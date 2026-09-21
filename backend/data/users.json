@@ -1,0 +1,50 @@
+[
+  {
+    "name": "xyz",
+    "email": "xyz@gmail.com",
+    "password_hash": "$2b$10$.tThju6Bl9677TgKNxjvvOZU2LHE4ESlEJzwZa.bDsg56y7uNzD9q",
+    "role": "admin",
+    "created_at": "2026-09-19T13:12:04.997266+00:00",
+    "profile": {
+      "avatar": "",
+      "bio": "Administrator",
+      "preferences": {
+        "language": "en",
+        "theme": "dark"
+      }
+    },
+    "_id": "6aae8a244da1abf17b07c0d8"
+  },
+  {
+    "name": "Ashhwithhh Reddy",
+    "email": "vijaydevarakonda406@gmail.com",
+    "password_hash": "oauth_google_account",
+    "role": "student",
+    "created_at": "2026-09-18T06:17:27.538600+00:00",
+    "profile": {
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocIBPaURjf6IYUTy9xvMAmbG2J7fDPaiNeUXnwXSdtFa9jpUWg=s96-c",
+      "bio": "Student",
+      "preferences": {
+        "language": "en",
+        "theme": "dark"
+      }
+    },
+    "_id": "6aacd777bbf64d38a2ca3496"
+  },
+  {
+    "name": "ASH",
+    "email": "ash@gmail.com",
+    "password_hash": "$2b$10$s1DFEv67pqaU.1qAGuL/Ueov9c4MKlHkVWd.ejEarHTnMBfTBJxp2",
+    "role": "faculty",
+    "created_at": "2026-09-19T13:35:17.066948+00:00",
+    "profile": {
+      "avatar": "",
+      "bio": "",
+      "preferences": {
+        "language": "en",
+        "theme": "dark"
+      }
+    },
+    "_id": "6aae8f955a0035537148418f"
+  }
+]

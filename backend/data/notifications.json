@@ -1,0 +1,15 @@
+[
+  {
+    "user_id": "6aacd777bbf64d38a2ca3496",
+    "recipient_id": "6aacd777bbf64d38a2ca3496",
+    "title": "Study Session Reminder: Java Programming",
+    "message": "Don't forget your scheduled study session for Java Programming today (08:30 PM).",
+    "type": "planner",
+    "link": "/planner",
+    "related_id": "",
+    "sender_id": "",
+    "read": true,
+    "created_at": "2026-09-21T15:00:42.216410+00:00",
+    "_id": "6ab1469a90580efba28bdec8"
+  }
+]

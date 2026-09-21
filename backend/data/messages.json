@@ -1,0 +1,211 @@
+[
+  {
+    "sender_id": "6aae8f955a0035537148418f",
+    "sender_name": "ASH",
+    "sender_role": "faculty",
+    "receiver_id": "6aacd777bbf64d38a2ca3496",
+    "message_text": "do all todays assignments and quizzes",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-19T16:09:47.198502+00:00",
+    "_id": "6aaeb3cb553249d741f0fa99"
+  },
+  {
+    "sender_id": "6aacd777bbf64d38a2ca3496",
+    "sender_name": "Ashhwithhh Reddy",
+    "sender_role": "student",
+    "receiver_id": "6aae8f955a0035537148418f",
+    "message_text": "okay mam sure",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-19T16:12:33.371790+00:00",
+    "_id": "6aaeb471553249d741f0faa0"
+  },
+  {
+    "sender_id": "6aacd777bbf64d38a2ca3496",
+    "sender_name": "Ashhwithhh Reddy",
+    "sender_role": "student",
+    "receiver_id": "6aae8f955a0035537148418f",
+    "message_text": "from which we need to submit all that",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-19T16:12:45.913791+00:00",
+    "_id": "6aaeb47d553249d741f0faa2"
+  },
+  {
+    "sender_id": "6aae8f955a0035537148418f",
+    "sender_name": "ASH",
+    "sender_role": "faculty",
+    "receiver_id": "6aacd777bbf64d38a2ca3496",
+    "message_text": "fh",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-19T16:26:41.497227+00:00",
+    "_id": "6aaeb7c1ab779fa5f37ed772"
+  },
+  {
+    "sender_id": "6aae8f955a0035537148418f",
+    "sender_name": "ASH",
+    "sender_role": "faculty",
+    "receiver_id": "6aacd777bbf64d38a2ca3496",
+    "message_text": "jh",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-19T16:26:43.759176+00:00",
+    "_id": "6aaeb7c3ab779fa5f37ed774"
+  },
+  {
+    "sender_id": "6aae8f955a0035537148418f",
+    "sender_name": "ASH",
+    "sender_role": "faculty",
+    "receiver_id": "6aacd777bbf64d38a2ca3496",
+    "message_text": "hk",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-19T16:26:45.657404+00:00",
+    "_id": "6aaeb7c5ab779fa5f37ed776"
+  },
+  {
+    "sender_id": "6aae8f955a0035537148418f",
+    "sender_name": "ASH",
+    "sender_role": "faculty",
+    "receiver_id": "6aacd777bbf64d38a2ca3496",
+    "message_text": "jk'",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-19T16:26:47.809592+00:00",
+    "_id": "6aaeb7c7ab779fa5f37ed778"
+  },
+  {
+    "sender_id": "6aae8f955a0035537148418f",
+    "sender_name": "ASH",
+    "sender_role": "faculty",
+    "receiver_id": "6aacd777bbf64d38a2ca3496",
+    "message_text": "k",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-19T16:26:49.370871+00:00",
+    "_id": "6aaeb7c9ab779fa5f37ed77a"
+  },
+  {
+    "sender_id": "6aae8f955a0035537148418f",
+    "sender_name": "ASH",
+    "sender_role": "faculty",
+    "receiver_id": "6aacd777bbf64d38a2ca3496",
+    "message_text": "hjk",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-19T16:26:50.352185+00:00",
+    "_id": "6aaeb7caab779fa5f37ed77c"
+  },
+  {
+    "sender_id": "6aae8f955a0035537148418f",
+    "sender_name": "ASH",
+    "sender_role": "faculty",
+    "receiver_id": "6aacd777bbf64d38a2ca3496",
+    "message_text": "gjk",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-19T16:26:51.933769+00:00",
+    "_id": "6aaeb7cbab779fa5f37ed77e"
+  },
+  {
+    "sender_id": "6aae8f955a0035537148418f",
+    "sender_name": "ASH",
+    "sender_role": "faculty",
+    "receiver_id": "6aacd777bbf64d38a2ca3496",
+    "message_text": "fghjk",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-19T16:26:52.804293+00:00",
+    "_id": "6aaeb7ccab779fa5f37ed780"
+  },
+  {
+    "sender_id": "6aae8f955a0035537148418f",
+    "sender_name": "ASH",
+    "sender_role": "faculty",
+    "receiver_id": "6aacd777bbf64d38a2ca3496",
+    "message_text": "ghjk'",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-19T16:26:55.104220+00:00",
+    "_id": "6aaeb7cfab779fa5f37ed782"
+  },
+  {
+    "sender_id": "6aacd777bbf64d38a2ca3496",
+    "sender_name": "Ashhwithhh Reddy",
+    "sender_role": "student",
+    "receiver_id": "6aae8f955a0035537148418f",
+    "message_text": "hloo",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-20T09:41:42.367206+00:00",
+    "_id": "6aafaa56a2f19a92b49cd13e"
+  },
+  {
+    "sender_id": "6aacd777bbf64d38a2ca3496",
+    "sender_name": "Ashhwithhh Reddy",
+    "sender_role": "student",
+    "receiver_id": "6aae8f955a0035537148418f",
+    "message_text": "mam i had doubt in java?",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-20T09:41:52.742105+00:00",
+    "_id": "6aafaa60a2f19a92b49cd140"
+  },
+  {
+    "sender_id": "6aacd777bbf64d38a2ca3496",
+    "sender_name": "Ashhwithhh Reddy",
+    "sender_role": "student",
+    "receiver_id": "6aae8f955a0035537148418f",
+    "message_text": "let me know what is  what please explain me it again",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-20T09:42:08.869048+00:00",
+    "_id": "6aafaa70a2f19a92b49cd142"
+  },
+  {
+    "sender_id": "6aae8f955a0035537148418f",
+    "sender_name": "ASH",
+    "sender_role": "faculty",
+    "receiver_id": "6aacd777bbf64d38a2ca3496",
+    "message_text": "okay ill clarify within 10 min",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-20T09:44:33.373512+00:00",
+    "_id": "6aafab01a2f19a92b49cd145"
+  },
+  {
+    "sender_id": "6aae8f955a0035537148418f",
+    "sender_name": "ASH",
+    "sender_role": "faculty",
+    "receiver_id": "6aacd777bbf64d38a2ca3496",
+    "message_text": "give me some time",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-20T09:44:41.907389+00:00",
+    "_id": "6aafab09a2f19a92b49cd147"
+  },
+  {
+    "sender_id": "6aacd777bbf64d38a2ca3496",
+    "sender_name": "Ashhwithhh Reddy",
+    "sender_role": "student",
+    "receiver_id": "6aae8f955a0035537148418f",
+    "message_text": "hloo",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-21T14:10:31.723955+00:00",
+    "_id": "6ab13ad7e3a4e4467fc73554"
+  },
+  {
+    "sender_id": "6aacd777bbf64d38a2ca3496",
+    "sender_name": "Ashhwithhh Reddy",
+    "sender_role": "student",
+    "receiver_id": "6aae8f955a0035537148418f",
+    "message_text": "hii what is python?",
+    "attachment_url": null,
+    "read": true,
+    "timestamp": "2026-09-21T14:10:40.963596+00:00",
+    "_id": "6ab13ae0e3a4e4467fc73556"
+  }
+]

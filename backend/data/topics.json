@@ -1,0 +1,249 @@
+[
+  {
+    "subject_id": "6aabaf9a352d88b6cff8ee96",
+    "name": "Java Fundamentals & Syntax",
+    "description": "JDK, JRE, JVM architecture, variables, primitive types, and operators.",
+    "subtopics": [
+      "JVM Architecture",
+      "Data Types",
+      "Operators",
+      "Input/Output Streams"
+    ],
+    "order": 1,
+    "_id": "6aabaf9a352d88b6cff8ee97"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8ee96",
+    "name": "Control Flow & Decision Making",
+    "description": "Conditional branching logic and iteration constructs in Java.",
+    "subtopics": [
+      "if-else",
+      "switch expression",
+      "for loop",
+      "while loop",
+      "do-while"
+    ],
+    "order": 2,
+    "_id": "6aabaf9a352d88b6cff8ee98"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8ee96",
+    "name": "Object-Oriented Programming Core",
+    "description": "Classes, inheritance, polymorphism, encapsulation, abstraction, and interfaces.",
+    "subtopics": [
+      "Classes & Objects",
+      "Inheritance",
+      "Polymorphism",
+      "Encapsulation",
+      "Abstraction",
+      "Interfaces"
+    ],
+    "order": 3,
+    "_id": "6aabaf9a352d88b6cff8ee99"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8ee96",
+    "name": "Exception Handling & Robustness",
+    "description": "Try-catch-finally mechanisms, custom exceptions, and assertions.",
+    "subtopics": [
+      "Try-Catch-Finally",
+      "Throw vs Throws",
+      "Custom Exception Classes"
+    ],
+    "order": 4,
+    "_id": "6aabaf9a352d88b6cff8ee9a"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8ee96",
+    "name": "Java Collections Framework",
+    "description": "Lists, Sets, Maps, Queues, and Iterator patterns.",
+    "subtopics": [
+      "ArrayList & LinkedList",
+      "HashSet & TreeSet",
+      "HashMap & ConcurrentHashMap",
+      "Collections Utility"
+    ],
+    "order": 5,
+    "_id": "6aabaf9a352d88b6cff8ee9b"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8ee96",
+    "name": "Advanced Java & Streams",
+    "description": "Generics, Multithreading, Concurrency, File I/O, JDBC, and Lambda Expressions.",
+    "subtopics": [
+      "Generics",
+      "File I/O",
+      "Multithreading & Executors",
+      "JDBC Database Access",
+      "Java 8 Streams"
+    ],
+    "order": 6,
+    "_id": "6aabaf9a352d88b6cff8ee9c"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8ee9d",
+    "name": "Python Syntax & Basics",
+    "description": "Dynamic typing, variables, expressions, and formatting.",
+    "subtopics": [
+      "Variables & Primitive Types",
+      "Strings & Formatting",
+      "Basic Operators"
+    ],
+    "order": 1,
+    "_id": "6aabaf9a352d88b6cff8ee9e"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8ee9d",
+    "name": "Data Structures in Python",
+    "description": "Built-in lists, tuples, dictionaries, sets, and comprehension syntax.",
+    "subtopics": [
+      "Lists & Mutability",
+      "Tuples",
+      "Dictionaries & Hash Keys",
+      "Sets",
+      "List & Dict Comprehensions"
+    ],
+    "order": 2,
+    "_id": "6aabaf9a352d88b6cff8ee9f"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8ee9d",
+    "name": "Functional & Modular Programming",
+    "description": "Functions, args/kwargs, modules, packages, and lambda functions.",
+    "subtopics": [
+      "Function Definitions",
+      "*args & **kwargs",
+      "Lambda Functions",
+      "Modules & Imports"
+    ],
+    "order": 3,
+    "_id": "6aabaf9a352d88b6cff8eea0"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8ee9d",
+    "name": "Object-Oriented Python",
+    "description": "Classes, dunder methods, inheritance, and dataclasses.",
+    "subtopics": [
+      "Classes & Self",
+      "Special Dunder Methods",
+      "Inheritance",
+      "Dataclasses"
+    ],
+    "order": 4,
+    "_id": "6aabaf9a352d88b6cff8eea1"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8ee9d",
+    "name": "File I/O & Exception Handling",
+    "description": "Context managers, reading/writing files, and error handling.",
+    "subtopics": [
+      "Try-Except Blocks",
+      "Context Managers (with statement)",
+      "JSON & File I/O"
+    ],
+    "order": 5,
+    "_id": "6aabaf9a352d88b6cff8eea2"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8eea3",
+    "name": "Complexity Analysis & Asymptotic Notation",
+    "description": "Big-O, Big-Omega, Big-Theta notation, and recursion trees.",
+    "subtopics": [
+      "Big-O Complexity",
+      "Space Complexity",
+      "Recurrence Relations"
+    ],
+    "order": 1,
+    "_id": "6aabaf9a352d88b6cff8eea4"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8eea3",
+    "name": "Linear Data Structures",
+    "description": "Arrays, Linked Lists, Stacks, Queues, and Deques.",
+    "subtopics": [
+      "Arrays & Dynamic Arrays",
+      "Singly & Doubly Linked Lists",
+      "Stack Applications",
+      "Queue Implementations"
+    ],
+    "order": 2,
+    "_id": "6aabaf9a352d88b6cff8eea5"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8eea3",
+    "name": "Sorting & Searching Algorithms",
+    "description": "Binary search, QuickSort, MergeSort, HeapSort, and Counting Sort.",
+    "subtopics": [
+      "Binary Search",
+      "MergeSort",
+      "QuickSort",
+      "HeapSort"
+    ],
+    "order": 3,
+    "_id": "6aabaf9a352d88b6cff8eea6"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8eea3",
+    "name": "Tree Data Structures",
+    "description": "Binary Trees, Binary Search Trees (BST), AVL Trees, and Heaps.",
+    "subtopics": [
+      "Binary Tree Traversals",
+      "BST Operations",
+      "Balanced Trees (AVL)",
+      "Binary Heaps"
+    ],
+    "order": 4,
+    "_id": "6aabaf9a352d88b6cff8eea7"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8eea3",
+    "name": "Graph Algorithms",
+    "description": "Breadth-First Search (BFS), Depth-First Search (DFS), Dijkstra's, and Kruskal's algorithm.",
+    "subtopics": [
+      "Graph Representation",
+      "BFS & DFS",
+      "Shortest Path (Dijkstra)",
+      "Minimum Spanning Tree"
+    ],
+    "order": 5,
+    "_id": "6aabaf9a352d88b6cff8eea8"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8eea9",
+    "name": "Relational Model & SQL Fundamentals",
+    "description": "DDL, DML, DCL commands, SELECT queries, and JOINs.",
+    "subtopics": [
+      "CREATE/ALTER Table",
+      "SELECT, WHERE, ORDER BY",
+      "INNER, LEFT, RIGHT JOINs",
+      "Aggregation & GROUP BY"
+    ],
+    "order": 1,
+    "_id": "6aabaf9a352d88b6cff8eeaa"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8eea9",
+    "name": "Database Design & Normalization",
+    "description": "ER Diagrams, 1NF, 2NF, 3NF, and BCNF normal forms.",
+    "subtopics": [
+      "Entity-Relationship Models",
+      "Functional Dependencies",
+      "1NF & 2NF",
+      "3NF & BCNF"
+    ],
+    "order": 2,
+    "_id": "6aabaf9a352d88b6cff8eeab"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8eea9",
+    "name": "Transactions & Concurrency Control",
+    "description": "ACID properties, locking mechanisms, serializability, and deadlock handling.",
+    "subtopics": [
+      "ACID Properties",
+      "Two-Phase Locking (2PL)",
+      "Deadlock Detection & Prevention"
+    ],
+    "order": 3,
+    "_id": "6aabaf9a352d88b6cff8eeac"
+  }
+]

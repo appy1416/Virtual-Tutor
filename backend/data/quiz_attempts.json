@@ -1,0 +1,45 @@
+[
+  {
+    "quiz_id": "6aaeb364553249d741f0fa94",
+    "quiz_title": "ghjkl",
+    "student_id": "6aacd777bbf64d38a2ca3496",
+    "student_name": "Ashhwithhh Reddy",
+    "score": 0.0,
+    "total_marks": 1.0,
+    "status": "Graded",
+    "graded_answers": [
+      {
+        "question_id": "q1",
+        "type": "mcq",
+        "given_answer": "0",
+        "is_correct": true,
+        "score": 1.0
+      }
+    ],
+    "submitted_at": "2026-09-19T16:10:29.432098+00:00",
+    "_id": "6aaeb3f5553249d741f0fa9b",
+    "feedback": "ghjk",
+    "graded_at": "2026-09-19T16:14:23.664220+00:00",
+    "graded_by": "ASH"
+  },
+  {
+    "quiz_id": "6aaeb364553249d741f0fa94",
+    "quiz_title": "ghjkl",
+    "student_id": "6aacd777bbf64d38a2ca3496",
+    "student_name": "Ashhwithhh Reddy",
+    "score": 0.0,
+    "total_marks": 1.0,
+    "status": "Graded",
+    "graded_answers": [
+      {
+        "question_id": "q1",
+        "type": "mcq",
+        "given_answer": "1",
+        "is_correct": false,
+        "score": 0.0
+      }
+    ],
+    "submitted_at": "2026-09-20T09:40:25.054716+00:00",
+    "_id": "6aafaa09a2f19a92b49cd13a"
+  }
+]

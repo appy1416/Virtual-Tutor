@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Java Programming",
+    "description": "Comprehensive Object-Oriented Programming and Enterprise Application Development in Java.",
+    "_id": "6aabaf9a352d88b6cff8ee96"
+  },
+  {
+    "name": "Python Programming",
+    "description": "Modern Python for Data Science, Automation, Web APIs, and Artificial Intelligence.",
+    "_id": "6aabaf9a352d88b6cff8ee9d"
+  },
+  {
+    "name": "Data Structures & Algorithms",
+    "description": "Fundamental algorithms, time/space complexity analysis, and linear/non-linear data structures.",
+    "_id": "6aabaf9a352d88b6cff8eea3"
+  },
+  {
+    "name": "Database Management Systems (DBMS)",
+    "description": "Relational databases, SQL queries, ER modeling, normalization, and ACID transactions.",
+    "_id": "6aabaf9a352d88b6cff8eea9"
+  }
+]

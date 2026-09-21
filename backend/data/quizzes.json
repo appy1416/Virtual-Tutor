@@ -1,0 +1,395 @@
+[
+  {
+    "title": "ghjkl",
+    "subject_id": "6aabaf9a352d88b6cff8ee96",
+    "topic_id": "6aabaf9a352d88b6cff8ee97",
+    "subtopic": "",
+    "class_id": "6aae8f615a0035537148418e",
+    "duration_minutes": 30,
+    "start_date": null,
+    "end_date": null,
+    "created_by": "6aae8f955a0035537148418f",
+    "faculty_name": "ASH",
+    "total_marks": 1.0,
+    "questions": [
+      {
+        "id": "q1",
+        "type": "mcq",
+        "question_text": "bnm,",
+        "options": [
+          "vv",
+          "kk",
+          " nn",
+          "mm"
+        ],
+        "correct_answer": "0",
+        "marks": 1.0
+      }
+    ],
+    "created_at": "2026-09-19T16:08:04.412027+00:00",
+    "_id": "6aaeb364553249d741f0fa94"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8ee9d",
+    "topic_id": "6aabaf9a352d88b6cff8ee9e",
+    "subtopic": "Variables & Primitive Types",
+    "question_type": "MCQ",
+    "difficulty": "medium",
+    "questions": [
+      {
+        "id": "q1",
+        "question_text": "Which of the following statements correctly describes core principle #1 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q2",
+        "question_text": "Which of the following statements correctly describes core principle #2 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q3",
+        "question_text": "Which of the following statements correctly describes core principle #3 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q4",
+        "question_text": "Which of the following statements correctly describes core principle #4 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q5",
+        "question_text": "Which of the following statements correctly describes core principle #5 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q6",
+        "question_text": "Which of the following statements correctly describes core principle #6 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q7",
+        "question_text": "Which of the following statements correctly describes core principle #7 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q8",
+        "question_text": "Which of the following statements correctly describes core principle #8 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q9",
+        "question_text": "Which of the following statements correctly describes core principle #9 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q10",
+        "question_text": "Which of the following statements correctly describes core principle #10 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      }
+    ],
+    "created_at": "2026-09-19T16:28:46.916237+00:00",
+    "_id": "6aaeb83eab779fa5f37ed784"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8eea3",
+    "topic_id": "6aabaf9a352d88b6cff8eea4",
+    "subtopic": "Big-O Complexity",
+    "question_type": "MCQ",
+    "difficulty": "medium",
+    "questions": [
+      {
+        "id": "q1",
+        "question_text": "Which of the following statements correctly describes core principle #1 of Complexity Analysis & Asymptotic Notation (Big-O Complexity) in Data Structures & Algorithms?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Complexity Analysis & Asymptotic Notation.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q2",
+        "question_text": "Which of the following statements correctly describes core principle #2 of Complexity Analysis & Asymptotic Notation (Big-O Complexity) in Data Structures & Algorithms?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Complexity Analysis & Asymptotic Notation.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q3",
+        "question_text": "Which of the following statements correctly describes core principle #3 of Complexity Analysis & Asymptotic Notation (Big-O Complexity) in Data Structures & Algorithms?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Complexity Analysis & Asymptotic Notation.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q4",
+        "question_text": "Which of the following statements correctly describes core principle #4 of Complexity Analysis & Asymptotic Notation (Big-O Complexity) in Data Structures & Algorithms?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Complexity Analysis & Asymptotic Notation.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q5",
+        "question_text": "Which of the following statements correctly describes core principle #5 of Complexity Analysis & Asymptotic Notation (Big-O Complexity) in Data Structures & Algorithms?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Complexity Analysis & Asymptotic Notation.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q6",
+        "question_text": "Which of the following statements correctly describes core principle #6 of Complexity Analysis & Asymptotic Notation (Big-O Complexity) in Data Structures & Algorithms?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Complexity Analysis & Asymptotic Notation.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q7",
+        "question_text": "Which of the following statements correctly describes core principle #7 of Complexity Analysis & Asymptotic Notation (Big-O Complexity) in Data Structures & Algorithms?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Complexity Analysis & Asymptotic Notation.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q8",
+        "question_text": "Which of the following statements correctly describes core principle #8 of Complexity Analysis & Asymptotic Notation (Big-O Complexity) in Data Structures & Algorithms?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Complexity Analysis & Asymptotic Notation.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q9",
+        "question_text": "Which of the following statements correctly describes core principle #9 of Complexity Analysis & Asymptotic Notation (Big-O Complexity) in Data Structures & Algorithms?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Complexity Analysis & Asymptotic Notation.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q10",
+        "question_text": "Which of the following statements correctly describes core principle #10 of Complexity Analysis & Asymptotic Notation (Big-O Complexity) in Data Structures & Algorithms?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Complexity Analysis & Asymptotic Notation.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      }
+    ],
+    "created_at": "2026-09-20T09:40:51.785440+00:00",
+    "_id": "6aafaa23a2f19a92b49cd13d"
+  },
+  {
+    "subject_id": "6aabaf9a352d88b6cff8ee9d",
+    "topic_id": "6aabaf9a352d88b6cff8ee9e",
+    "subtopic": "Variables & Primitive Types",
+    "question_type": "MCQ",
+    "difficulty": "medium",
+    "questions": [
+      {
+        "id": "q1",
+        "question_text": "Which of the following statements correctly describes core principle #1 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q2",
+        "question_text": "Which of the following statements correctly describes core principle #2 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q3",
+        "question_text": "Which of the following statements correctly describes core principle #3 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q4",
+        "question_text": "Which of the following statements correctly describes core principle #4 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q5",
+        "question_text": "Which of the following statements correctly describes core principle #5 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q6",
+        "question_text": "Which of the following statements correctly describes core principle #6 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q7",
+        "question_text": "Which of the following statements correctly describes core principle #7 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q8",
+        "question_text": "Which of the following statements correctly describes core principle #8 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q9",
+        "question_text": "Which of the following statements correctly describes core principle #9 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      },
+      {
+        "id": "q10",
+        "question_text": "Which of the following statements correctly describes core principle #10 of Python Syntax & Basics (Variables & Primitive Types) in Python Programming?",
+        "options": [
+          "It provides a fundamental design abstraction for scalable development in Python Syntax & Basics.",
+          "It is a deprecated pattern that prevents code compilation.",
+          "It strictly applies only to legacy mainframe systems.",
+          "None of the above choices are valid."
+        ],
+        "correct_answer": "0"
+      }
+    ],
+    "created_at": "2026-09-21T14:08:55.167948+00:00",
+    "_id": "6ab13a77e3a4e4467fc73553"
+  }
+]

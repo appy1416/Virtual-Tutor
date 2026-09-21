@@ -1,0 +1,107 @@
+[
+  {
+    "student_id": "6aacd777bbf64d38a2ca3496",
+    "query": "what is python?",
+    "response": "Your current doubt-solving context is Java Programming \u2192 Java Fundamentals & Syntax \u2192 JVM Architecture. Please ask a question related to this topic or change the selected subject/topic.",
+    "citations": [
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 29,
+        "snippet": "Step 8: Make Predictions and Generate a Classification Report\n# Make predictions\n1. predictions = model.predict(test_images)\n2. predicted_classes = np.argmax(predictions, axis=1)\n3. true_classes = np.argmax(test_labels, axis=1)\n# Generate a classification report\n1. print(classification_report(true_classes, predicted_classes))"
+      },
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 34,
+        "snippet": "Summary:\n\u2756 This Python program implements a Convolutional Neural Network (CNN) using Keras to \nclassify images from the MNIST dataset, utilizing data augmentation to enhance model \nperformance. The dataset is preprocessed by normalizing and reshaping the images and \none-hot encoding the labels. Data augmentation is applied to the training images using \nrandom transformations, such as rotation and zoom, to help the model generalize better. \nThe CNN, consisting of convolutional, pooling, and dense"
+      },
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 3,
+        "snippet": " This allows them to solve a wide range of problems, including image\nclassification, natural language processing, and machine translation.\n"
+      },
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 31,
+        "snippet": "Step 9: Visualize Some Predictions\n# Display a few test images with their predicted and true labels\n1. num_images = 5\n2. plt.figure(figsize=(10, 10))\n3. for i in range(num_images):\n4.     plt.subplot(1, num_images, i + 1)\n5.     plt.imshow(test_images[i].reshape(28, 28), cmap='gray')\n6.     plt.title(f\"Pred: {predicted_classes[i]}\\nTrue: {true_classes[i]}\")\n7.     plt.axis('off')\n8. plt.show()"
+      },
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 6,
+        "snippet": "\u2756 The program implements a Convolutional Neural Network (CNN) using Keras to \nclassify images from the MNIST dataset (handwritten digits). It also utilizes data \naugmentation to improve the model's generalization ability.\n1. Installing necessary libraries.\n2. Loading and preprocessing the MNIST dataset.\n3. Setting up data augmentation.\n4. Building the neural network model.\n5. Compiling and training the model.\n6. Plotting training history.\n7. Making predictions and generating a classification rep"
+      }
+    ],
+    "timestamp": "2026-09-20T09:39:50.024368+00:00",
+    "subject_id": "6aabaf9a352d88b6cff8ee96",
+    "_id": "6aafa9e6a2f19a92b49cd139"
+  },
+  {
+    "student_id": "6aacd777bbf64d38a2ca3496",
+    "query": "what is java?",
+    "response": "**Java** is a high-level, class-based, object-oriented programming language designed to have as few implementation dependencies as possible. It is widely used for building web applications, enterprise software, mobile apps (Android), desktop applications, and big data systems.\n\n---\n\n### Key Features of Java\n\n1. **Platform Independence (\"Write Once, Run Anywhere - WORA\"):**\n   * Java source code is compiled into an intermediate form called **Bytecode** (`.class` files), rather than machine-specific code.\n   * This bytecode can run on any device or operating system that has a **Java Virtual Machine (JVM)** installed.\n\n2. **Object-Oriented:**\n   * Java organizes software design around objects and data rather than functions and logic, promoting modularity, reusability, and maintainability.\n\n3. **Automatic Memory Management:**\n   * Java manages memory automatically using a process called **Garbage Collection**, which frees up memory occupied by objects that are no longer in use.\n\n4. **Robust and Secure:**\n   * Java minimizes errors through strong type-checking, compile-time and runtime error checking, exception handling, and the elimination of explicit pointers.\n\n---\n\n### How Java Runs (The Execution Process)\n\n1. **Source Code (`.java`):** You write Java code in a file ending with `.java`.\n2. **Compilation (`javac`):** The Java Compiler compiles your source code into **Bytecode** (`.class` file).\n3. **Execution (JVM):** The **Java Virtual Machine (JVM)** interprets or JIT-compiles (Just-In-Time compilation) the bytecode into native machine code specific to the host operating system and executes it.\n\n---\n\n### How it Relates to JVM Architecture\nThe **JVM (Java Virtual Machine)** is the core engine of the Java platform. It loads the compiled `.class` files into memory, verifies the bytecode, handles memory allocation, and executes the program on the underlying hardware, making Java truly platform-independent.",
+    "citations": [
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 6,
+        "snippet": "g the model.\n6. Plotting training history.\n7. Making predictions and generating a classification report.\n8. Visualizing predictions."
+      },
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 3,
+        "snippet": " This allows them to solve a wide range of problems, including image\nclassification, natural language processing, and machine translation.\n"
+      },
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 6,
+        "snippet": "\u2756 The program implements a Convolutional Neural Network (CNN) using Keras to \nclassify images from the MNIST dataset (handwritten digits). It also utilizes data \naugmentation to improve the model's generalization ability.\n1. Installing necessary libraries.\n2. Loading and preprocessing the MNIST dataset.\n3. Setting up data augmentation.\n4. Building the neural network model.\n5. Compiling and training the model.\n6. Plotting training history.\n7. Making predictions and generating a classification rep"
+      },
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 3,
+        "snippet": "\u2756 Multilayer Neural Network (MLN)\n\u2756 A multilayer neural network (MLN) is a type of artificial neural network that has more than\none layer of neurons. MLNs are typically feed-forward networks, which means that the\ninformation flows from the input layer to the output layer in one direction only.\n\u2756 MLNs are able to learn complex patterns in data by combining the outputs of neurons in\nprevious layers. This allows them to solve a wide range of problems, including image\nclassification, natural languag"
+      },
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 34,
+        "snippet": "zoom, to help the model generalize better. \nThe CNN, consisting of convolutional, pooling, and dense layers, is compiled with the \nAdam optimizer and trained for three epochs. The model's performance is evaluated by \nplotting training history, generating a classification report, and visualizing predictions, \nachieving a final accuracy score on the test dataset."
+      }
+    ],
+    "timestamp": "2026-09-20T09:46:27.307562+00:00",
+    "subject_id": "6aabaf9a352d88b6cff8ee96",
+    "_id": "6aafab73a2f19a92b49cd149"
+  },
+  {
+    "student_id": "6aacd777bbf64d38a2ca3496",
+    "query": "what is python?",
+    "response": "Your current doubt-solving context is Java Programming \u2192 Java Fundamentals & Syntax \u2192 JVM Architecture. Please ask a question related to this topic or change the selected subject/topic.",
+    "citations": [
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 29,
+        "snippet": "Step 8: Make Predictions and Generate a Classification Report\n# Make predictions\n1. predictions = model.predict(test_images)\n2. predicted_classes = np.argmax(predictions, axis=1)\n3. true_classes = np.argmax(test_labels, axis=1)\n# Generate a classification report\n1. print(classification_report(true_classes, predicted_classes))"
+      },
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 34,
+        "snippet": "Summary:\n\u2756 This Python program implements a Convolutional Neural Network (CNN) using Keras to \nclassify images from the MNIST dataset, utilizing data augmentation to enhance model \nperformance. The dataset is preprocessed by normalizing and reshaping the images and \none-hot encoding the labels. Data augmentation is applied to the training images using \nrandom transformations, such as rotation and zoom, to help the model generalize better. \nThe CNN, consisting of convolutional, pooling, and dense"
+      },
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 3,
+        "snippet": " This allows them to solve a wide range of problems, including image\nclassification, natural language processing, and machine translation.\n"
+      },
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 31,
+        "snippet": "Step 9: Visualize Some Predictions\n# Display a few test images with their predicted and true labels\n1. num_images = 5\n2. plt.figure(figsize=(10, 10))\n3. for i in range(num_images):\n4.     plt.subplot(1, num_images, i + 1)\n5.     plt.imshow(test_images[i].reshape(28, 28), cmap='gray')\n6.     plt.title(f\"Pred: {predicted_classes[i]}\\nTrue: {true_classes[i]}\")\n7.     plt.axis('off')\n8. plt.show()"
+      },
+      {
+        "material_id": "6aaeb381553249d741f0fa96",
+        "page_number": 6,
+        "snippet": "\u2756 The program implements a Convolutional Neural Network (CNN) using Keras to \nclassify images from the MNIST dataset (handwritten digits). It also utilizes data \naugmentation to improve the model's generalization ability.\n1. Installing necessary libraries.\n2. Loading and preprocessing the MNIST dataset.\n3. Setting up data augmentation.\n4. Building the neural network model.\n5. Compiling and training the model.\n6. Plotting training history.\n7. Making predictions and generating a classification rep"
+      }
+    ],
+    "timestamp": "2026-09-21T14:07:25.053666+00:00",
+    "subject_id": "6aabaf9a352d88b6cff8ee96",
+    "_id": "6ab13a1de3a4e4467fc73552"
+  }
+]

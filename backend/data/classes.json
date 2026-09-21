@@ -1,0 +1,16 @@
+[
+  {
+    "name": "CSE",
+    "code": "ALPHA",
+    "description": "DBMS",
+    "faculty_id": "6aae8f955a0035537148418f",
+    "faculty_name": "ASH",
+    "faculty_email": "ash@gmail.com",
+    "student_ids": [
+      "6aacd777bbf64d38a2ca3496"
+    ],
+    "subject_ids": [],
+    "created_at": "2026-09-19T13:34:25.015487+00:00",
+    "_id": "6aae8f615a0035537148418e"
+  }
+]

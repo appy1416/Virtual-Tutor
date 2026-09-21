@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #FFF9F6;
+  --bg-secondary: #FFF2EB;
+  --bg-card: #FFFFFF;
+  --accent-coral: #FF5A36;
+  --accent-coral-hover: #E04826;
+  --accent-soft: #FFF0EB;
+  --text-primary: #1E1B18;
+  --text-secondary: #4A443F;
+  --text-muted: #786F68;
+  --border-light: #F3E8E2;
+  --border-medium: #E8D8CF;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #FFF9F6;
+    color: #1E1B18;
+    -webkit-font-smoothing: antialiased;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(255, 90, 54, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(255, 120, 90, 0.03) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+
+  /* Universal headings and bold text contrast enforcement */
+  h1, h2, h3, h4, h5, h6, b, strong, th {
+    color: #1E1B18;
+  }
+
+  p, span, label, td, li {
+    color: inherit;
+  }
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #FFF9F6; }
+::-webkit-scrollbar-thumb { background: #E8D8CF; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #FF5A36; }
+
+/* ── Global Card & Container Normalization ── */
+.bg-slate-900,
+.bg-slate-950,
+.bg-slate-850,
+.bg-slate-900\/40,
+.bg-slate-900\/50,
+.bg-slate-900\/60,
+.bg-slate-900\/70,
+.bg-slate-900\/80,
+.bg-slate-950\/40,
+.bg-slate-950\/60,
+.bg-slate-800\/80,
+.bg-slate-800\/60,
+.bg-slate-800\/40,
+.bg-gray-900,
+.bg-gray-950 {
+  background-color: #FFFFFF !important;
+  color: #1E1B18 !important;
+}
+
+/* Modals and overlay backdrops */
+.bg-black\/70,
+.bg-black\/60,
+.bg-black\/40 {
+  background-color: rgba(30, 27, 24, 0.45) !important;
+}
+
+/* ── Global Border Normalization ── */
+.border-slate-800,
+.border-slate-800\/80,
+.border-slate-800\/60,
+.border-slate-700,
+.border-slate-700\/80,
+.border-slate-700\/60,
+.border-slate-600,
+.border-gray-800,
+.border-gray-700 {
+  border-color: #E8D8CF !important;
+}
+
+/* ── High Contrast Text Colors ── */
+.text-slate-100, 
+.text-slate-200, 
+.text-slate-300,
+.text-white:not(button):not(button *):not([class*="bg-"]):not([class*="bg-"] *),
+.text-gray-100,
+.text-gray-200,
+.text-gray-300 {
+  color: #1E1B18 !important;
+}
+
+.text-slate-400, 
+.text-slate-500, 
+.text-slate-600,
+.text-gray-400,
+.text-gray-500 {
+  color: #4A443F !important;
+}
+
+.text-slate-700,
+.text-slate-800,
+.text-slate-900 {
+  color: #1E1B18 !important;
+}
+
+/* ── Primary Action Buttons (Always Vivid Orange with 100% Pure White Text) ── */
+button.bg-indigo-600,
+button.bg-indigo-500,
+button.bg-purple-600,
+button.bg-purple-500,
+button.bg-blue-600,
+button.bg-blue-500,
+button.bg-\[\#FF5A36\],
+.btn-primary,
+a.bg-indigo-600,
+a.bg-purple-600,
+a.bg-blue-600,
+a.bg-\[\#FF5A36\] {
+  background-color: #FF5A36 !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 14px rgba(255, 90, 54, 0.25) !important;
+}
+
+button.bg-indigo-600:hover,
+button.bg-indigo-500:hover,
+button.bg-purple-600:hover,
+button.bg-purple-500:hover,
+button.bg-blue-600:hover,
+button.bg-blue-500:hover,
+button.bg-\[\#FF5A36\]:hover {
+  background-color: #E04826 !important;
+  color: #FFFFFF !important;
+}
+
+/* Ensure all text/icons inside primary buttons are always white */
+button.bg-indigo-600 *,
+button.bg-indigo-500 *,
+button.bg-purple-600 *,
+button.bg-purple-500 *,
+button.bg-blue-600 *,
+button.bg-blue-500 *,
+button.bg-\[\#FF5A36\] *,
+button.bg-\[\#1E1B18\] * {
+  color: #FFFFFF !important;
+}
+
+/* ── Secondary / Dark Outline Buttons ── */
+button.bg-slate-800,
+button.bg-slate-700,
+button.bg-slate-800\/80 {
+  background-color: #FFF2EB !important;
+  border: 1px solid #E8D8CF !important;
+  color: #1E1B18 !important;
+  font-weight: 700 !important;
+}
+
+button.bg-slate-800:hover,
+button.bg-slate-700:hover {
+  background-color: #FFE4D9 !important;
+  color: #FF5A36 !important;
+}
+
+button.bg-slate-800 *,
+button.bg-slate-700 * {
+  color: #1E1B18 !important;
+}
+
+/* ── Orange/Coral Theme Accents for Badges and Icons ── */
+.text-indigo-400,
+.text-indigo-500,
+.text-indigo-600,
+.text-purple-400,
+.text-purple-500,
+.text-purple-600,
+.text-blue-400,
+.text-blue-500,
+.text-blue-600 {
+  color: #FF5A36 !important;
+}
+
+.bg-indigo-500\/10,
+.bg-indigo-600\/10,
+.bg-purple-500\/10,
+.bg-purple-600\/10,
+.bg-blue-500\/10,
+.bg-indigo-950\/40,
+.bg-purple-950\/40,
+.bg-blue-950\/40,
+.bg-purple-950\/20,
+.bg-indigo-950\/20 {
+  background-color: #FFF0EB !important;
+  color: #FF5A36 !important;
+  border-color: #FFE4D9 !important;
+}
+
+.border-indigo-500\/30,
+.border-indigo-500\/20,
+.border-purple-500\/30,
+.border-purple-500\/20 {
+  border-color: #FFE4D9 !important;
+}
+
+/* ── Global Form Inputs & Selects ── */
+input, textarea, select {
+  color: #1E1B18 !important;
+  background-color: #FFFFFF !important;
+  border: 1px solid #E8D8CF !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #786F68 !important;
+  opacity: 1;
+}
+
+select option {
+  background-color: #FFFFFF !important;
+  color: #1E1B18 !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  box-shadow: 0 0 0 3px rgba(255, 90, 54, 0.2) !important;
+  border-color: #FF5A36 !important;
+  outline: none !important;
+}
+
+/* ── Mobile Layout Optimization ── */
+@media (max-width: 640px) {
+  .max-w-4xl, .max-w-5xl, .max-w-6xl, .max-w-7xl {
+    width: 100% !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+}
