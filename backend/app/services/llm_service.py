@@ -216,3 +216,92 @@ class LLMService:
                 return text
             except Exception as e:
                 return f"[LLM Multimodal Connection Error: {str(e)}]"
+
+    @staticmethod
+    async def generate_embedding(text: str) -> List[float]:
+        """
+        Generates an embedding vector for a single string using Gemini (text-embedding-004) or OpenAI.
+        Falls back to a deterministic hashing embedding if APIs are unavailable.
+        """
+        results = await LLMService.generate_embeddings([text])
+        return results[0] if results else LLMService._fallback_embedding(text)
+
+    @staticmethod
+    async def generate_embeddings(texts: List[str]) -> List[List[float]]:
+        """
+        Generates embedding vectors for a list of strings using Gemini text-embedding-004 or OpenAI text-embedding-3-small.
+        """
+        if not texts:
+            return []
+
+        # 1. Try Gemini Embeddings if configured
+        if settings.GEMINI_API_KEY:
+            try:
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:batchEmbedContents?key={settings.GEMINI_API_KEY}"
+                requests_payload = [
+                    {
+                        "model": "models/text-embedding-004",
+                        "content": {"parts": [{"text": t[:2048]}]}
+                    }
+                    for t in texts
+                ]
+                async with httpx.AsyncClient(timeout=20.0) as client:
+                    response = await client.post(url, json={"requests": requests_payload})
+                    if response.status_code == 200:
+                        data = response.json()
+                        embeddings = []
+                        for item in data.get("embeddings", []):
+                            embeddings.append(item.get("values", []))
+                        if len(embeddings) == len(texts):
+                            return embeddings
+            except Exception as ge:
+                print(f"Gemini embedding API error: {ge}")
+
+        # 2. Try OpenAI Embeddings if configured
+        if settings.OPENAI_API_KEY:
+            try:
+                url = "https://api.openai.com/v1/embeddings"
+                headers = {
+                    "Authorization": f"Bearer {settings.OPENAI_API_KEY}",
+                    "Content-Type": "application/json"
+                }
+                payload = {
+                    "model": "text-embedding-3-small",
+                    "input": [t[:2048] for t in texts]
+                }
+                async with httpx.AsyncClient(timeout=20.0) as client:
+                    response = await client.post(url, json=payload, headers=headers)
+                    if response.status_code == 200:
+                        data = response.json()
+                        raw_data = sorted(data.get("data", []), key=lambda x: x.get("index", 0))
+                        embeddings = [item["embedding"] for item in raw_data]
+                        if len(embeddings) == len(texts):
+                            return embeddings
+            except Exception as oe:
+                print(f"OpenAI embedding API error: {oe}")
+
+        # 3. Deterministic lightweight fallback (e.g. for offline / local tests)
+        return [LLMService._fallback_embedding(t) for t in texts]
+
+    @staticmethod
+    def _fallback_embedding(text: str, dim: int = 384) -> List[float]:
+        """
+        Creates a fast, deterministic pseudo-embedding based on character n-grams and hashing.
+        Allows ChromaDB vector storage and query retrieval to work without external API keys or heavy models.
+        """
+        import hashlib
+        import math
+        vec = [0.0] * dim
+        clean_words = text.lower().split()
+        if not clean_words:
+            return vec
+        for word in clean_words:
+            h = int(hashlib.md5(word.encode("utf-8")).hexdigest(), 16)
+            idx = h % dim
+            sign = 1.0 if ((h >> 8) & 1) else -1.0
+            vec[idx] += sign
+        # Normalize vector
+        norm = math.sqrt(sum(v * v for v in vec))
+        if norm > 0:
+            vec = [v / norm for v in vec]
+        return vec

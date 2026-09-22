@@ -64,17 +64,24 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# Enable CORS — allow all localhost origins
+# Enable CORS — explicit allowed origins (no wildcard when credentials are enabled)
+import os
+default_origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "https://virtual-tutor.vercel.app",
+    "https://virtual-ai-tutor.vercel.app",
+]
+env_origins = [o.strip() for o in os.getenv("CORS_ORIGINS", "").split(",") if o.strip()]
+allowed_origins = list(dict.fromkeys(default_origins + env_origins))
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:8000",
-        "http://127.0.0.1:8000"
-    ],
+    allow_origins=allowed_origins,
     allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$",
     allow_credentials=True,
     allow_methods=["*"],
@@ -82,7 +89,6 @@ app.add_middleware(
 )
 
 # Mount static files for uploads
-import os
 os.makedirs("uploads", exist_ok=True)
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
@@ -108,7 +114,21 @@ app.include_router(announcements.router)
 app.include_router(announcements.faculty_announcements_router)
 app.include_router(announcements.student_announcements_router)
 
+# Compatibility router for /api/v1 endpoints
+from fastapi import APIRouter
+from app.models.user import UserOut, Token
+v1_router = APIRouter(prefix="/api/v1")
+v1_router.add_api_route("/auth/register", auth.register, methods=["POST"], response_model=UserOut, status_code=201, tags=["auth-v1"])
+v1_router.add_api_route("/auth/login", auth.login, methods=["POST"], response_model=Token, tags=["auth-v1"])
+v1_router.add_api_route("/users/me", auth.get_me, methods=["GET"], response_model=UserOut, tags=["users-v1"])
+app.include_router(v1_router)
+
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
+
 @app.get("/api/health")
 async def health_check():
     return {"status": "healthy", "service": "Virtual AI Tutor"}
+
 

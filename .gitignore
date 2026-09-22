@@ -17,3 +17,7 @@ uploads/
 .env
 backend/.env
 frontend/.env
+
+# Scratch directories
+scratch/
+backend/scratch/

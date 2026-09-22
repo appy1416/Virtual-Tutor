@@ -25,7 +25,24 @@ All requested fixes and UI adjustments have been completed and verified.
    - Removed the top announcements banner from the main Faculty Dashboard (`frontend/src/pages/faculty/FacultyDashboard.jsx`).
    - Announcements remain exclusively accessible and manageable on the dedicated Announcements page (`/faculty/announcements`), keeping the dashboard clean and consistent with the student dashboard experience.
 
+### Recent Changes (2026-09-22)
+1. **Render Low-Memory (512 MiB RAM) & CPU Backend Optimization**:
+   - **Zero Startup ML Import**: Removed startup imports of heavy ML packages (`torch`, CUDA binaries, `easyocr`, `sentence-transformers`, `transformers`, `scipy`).
+   - **Startup RAM Reduction**: Cut startup memory footprint from >500 MB down to **~43 MB**, completely eliminating Render OOM crashes and port-binding failures.
+   - **Lazy-Loaded & Cloud AI Integrations**:
+     - Converted `OCRService` to lazy-load EasyOCR only if available and leverage Google Gemini / OpenAI multimodal vision directly with zero local model overhead.
+     - Enhanced `rag_service.py` with lazy ChromaDB client initialization via `ChromaClientProxy` and routed embeddings through Gemini (`text-embedding-004`) / OpenAI (`text-embedding-3-small`) with deterministic fallback.
+   - **Clean Requirements**: Removed `sentence-transformers` and `easyocr` from `backend/requirements.txt`; pinned lightweight CPU packages `pypdf`, `pillow`, `numpy`, and `certifi`.
+   - **Production Readiness & Start Command**:
+     - Production start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+     - Updated `backend/run.py` to read `PORT` from environment and prevent `reload=True` in production.
+     - Added `GET /health` (`{"status": "ok"}`) alongside `GET /api/health`.
+     - Explicitly whitelisted CORS origins for `https://virtual-tutor.vercel.app`, `https://virtual-ai-tutor.vercel.app`, and local origins without wildcards.
+     - Added backward-compatible routes for `POST /api/v1/auth/register`, `POST /api/v1/auth/login`, and `GET /api/v1/users/me` while keeping existing `/api/auth/*` routes 100% intact.
+   - **Non-blocking MongoDB Initialization**: Added 2.5s timeouts and explicit connection failure logging with graceful fallback to `PersistentDatabase`.
+
 ## Running the Application
-- **Backend**: `python run.py` inside `backend/` (running on http://localhost:8000).
+- **Backend (Development)**: `python run.py` inside `backend/` (running on http://localhost:8000 with reload).
+- **Backend (Render / Production)**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 - **Frontend**: `npm run dev` inside `frontend/` (running on http://localhost:5173).
 

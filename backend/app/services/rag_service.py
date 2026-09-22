@@ -1,43 +1,86 @@
 import os
 import re
 from datetime import datetime, timezone
-import chromadb
-from sentence_transformers import SentenceTransformer
 from app.db.mongodb import get_database
 from bson import ObjectId
 from app.services.llm_service import LLMService
 from typing import List, Dict, Any, Optional
 
-try:
-    import pypdf
-except ImportError:
-    pypdf = None
 
-try:
-    import docx
-except ImportError:
-    docx = None
 
-try:
-    import pptx
-except ImportError:
-    pptx = None
+# Lazy ChromaDB client initialization
+_chroma_client = None
 
-# Persistent ChromaDB location
-CHROMA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "chroma_db"))
-os.makedirs(CHROMA_DIR, exist_ok=True)
-chroma_client = chromadb.PersistentClient(path=CHROMA_DIR)
-_embedding_model = None
+def get_chroma_client():
+    global _chroma_client
+    if _chroma_client is None:
+        try:
+            import chromadb
+            chroma_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "chroma_db"))
+            os.makedirs(chroma_dir, exist_ok=True)
+            _chroma_client = chromadb.PersistentClient(path=chroma_dir)
+        except Exception as e:
+            print(f"ChromaDB initialization error: {e}")
+            raise e
+    return _chroma_client
+
+class ChromaClientProxy:
+    """Proxy object preserving backward compatibility for `from app.services.rag_service import chroma_client` without importing chromadb at startup."""
+    def __getattr__(self, name):
+        return getattr(get_chroma_client(), name)
+
+chroma_client = ChromaClientProxy()
+
+_local_embedding_model = None
+_sentence_transformers_checked = False
+
+def get_local_sentence_transformer():
+    global _local_embedding_model, _sentence_transformers_checked
+    if not _sentence_transformers_checked and _local_embedding_model is None:
+        _sentence_transformers_checked = True
+        try:
+            from sentence_transformers import SentenceTransformer
+            _local_embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+        except Exception as e:
+            _local_embedding_model = None
+    return _local_embedding_model
 
 def get_embedding_model():
-    global _embedding_model
-    if _embedding_model is None:
+    """Backward compatibility hook."""
+    return get_local_sentence_transformer()
+
+async def generate_embeddings_for_rag(texts: List[str]) -> List[List[float]]:
+    """
+    Generate embeddings for RAG.
+    1. Primary: LLMService (Gemini text-embedding-004 or OpenAI) - 0 MB local RAM!
+    2. Secondary: Local SentenceTransformer if installed.
+    3. Tertiary: Fast deterministic hashing embedding.
+    """
+    if not texts:
+        return []
+    from app.config import settings
+    if getattr(settings, "GEMINI_API_KEY", "") or getattr(settings, "OPENAI_API_KEY", ""):
         try:
-            _embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+            emb = await LLMService.generate_embeddings(texts)
+            if emb and len(emb) == len(texts):
+                return emb
         except Exception as e:
-            print(f"Warning loading SentenceTransformer model: {e}")
-            _embedding_model = None
-    return _embedding_model
+            print(f"API embedding error in RAG: {e}")
+
+    # Fallback to local model if available
+    local_model = get_local_sentence_transformer()
+    if local_model is not None:
+        try:
+            return local_model.encode(texts).tolist()
+        except Exception as me:
+            print(f"Local SentenceTransformer error: {me}")
+
+    # Fallback to deterministic embedding
+    return await LLMService.generate_embeddings(texts)
+
+async def generate_single_embedding_for_rag(text: str) -> List[float]:
+    results = await generate_embeddings_for_rag([text])
+    return results[0] if results else []
 
 def chunk_text(text: str, chunk_size: int = 500, overlap: int = 100) -> List[str]:
     chunks = []
@@ -67,49 +110,40 @@ def extract_text_from_file(file_path: str, material_type: str) -> List[Dict[str,
             print(f"Error reading text file: {e}")
             
     elif material_type == "pdf" or file_path.endswith(".pdf"):
-        if pypdf is not None:
-            try:
-                reader = pypdf.PdfReader(file_path)
-                for i, page in enumerate(reader.pages):
-                    text = page.extract_text() or ""
-                    pages.append({"page": i + 1, "text": text})
-            except Exception as e:
-                print(f"Error parsing PDF with pypdf: {e}")
-        else:
-            print("Warning: pypdf is not installed. Unable to parse PDF. Please install it using 'pip install pypdf'")
-            pages.append({"page": 1, "text": f"[PDF Document: PyPDF is not installed on the server to parse {os.path.basename(file_path)}]"})
+        try:
+            import importlib
+            pypdf = importlib.import_module("pypdf")
+            reader = pypdf.PdfReader(file_path)
+            for i, page in enumerate(reader.pages):
+                text = page.extract_text() or ""
+                pages.append({"page": i + 1, "text": text})
+        except Exception as e:
+            print(f"Warning: pypdf could not extract text ({e})")
+            pages.append({"page": 1, "text": f"[PDF Document: {os.path.basename(file_path)}]"})
             
     elif material_type == "docx" or file_path.endswith(".docx"):
-        if docx is not None:
-            try:
-                doc = docx.Document(file_path)
-                full_text = []
-                for para in doc.paragraphs:
-                    full_text.append(para.text)
-                text = "\n".join(full_text)
-                pages.append({"page": 1, "text": text})
-            except Exception as e:
-                print(f"Error parsing DOCX with python-docx: {e}")
-        else:
-            print("Warning: python-docx is not installed. Please install it using 'pip install python-docx'")
-            pages.append({"page": 1, "text": f"[DOCX Document: python-docx is not installed on the server to parse {os.path.basename(file_path)}]"})
+        try:
+            import importlib
+            docx = importlib.import_module("docx")
+            doc = docx.Document(file_path)
+            full_text = [para.text for para in doc.paragraphs]
+            text = "\n".join(full_text)
+            pages.append({"page": 1, "text": text})
+        except Exception as e:
+            print(f"Warning: python-docx could not extract text ({e})")
+            pages.append({"page": 1, "text": f"[DOCX Document: {os.path.basename(file_path)}]"})
             
     elif material_type == "pptx" or file_path.endswith(".pptx"):
-        if pptx is not None:
-            try:
-                prs = pptx.Presentation(file_path)
-                for i, slide in enumerate(prs.slides):
-                    slide_text = []
-                    for shape in slide.shapes:
-                        if hasattr(shape, "text"):
-                            slide_text.append(shape.text)
-                    text = "\n".join(slide_text)
-                    pages.append({"page": i + 1, "text": text})
-            except Exception as e:
-                print(f"Error parsing PPTX with python-pptx: {e}")
-        else:
-            print("Warning: python-pptx is not installed. Please install it using 'pip install python-pptx'")
-            pages.append({"page": 1, "text": f"[PPTX Document: python-pptx is not installed on the server to parse {os.path.basename(file_path)}]"})
+        try:
+            import importlib
+            pptx = importlib.import_module("pptx")
+            prs = pptx.Presentation(file_path)
+            for i, slide in enumerate(prs.slides):
+                slide_text = [shape.text for shape in slide.shapes if hasattr(shape, "text")]
+                pages.append({"page": i + 1, "text": "\n".join(slide_text)})
+        except Exception as e:
+            print(f"Warning: python-pptx could not extract text ({e})")
+            pages.append({"page": 1, "text": f"[PPTX Document: {os.path.basename(file_path)}]"})
             
     return pages
 
@@ -162,8 +196,7 @@ async def process_and_index_material(material_id: str, course_id: str, file_path
                 })
 
         if all_chunks:
-            model = get_embedding_model()
-            embeddings = model.encode(all_chunks).tolist() if model else []
+            embeddings = await generate_embeddings_for_rag(all_chunks)
             collection = chroma_client.get_or_create_collection("course_materials")
             if embeddings:
                 collection.upsert(
@@ -215,8 +248,7 @@ async def query_rag_doubt(
     subtopic: Optional[str] = None
 ) -> dict:
     db = get_database()
-    model = get_embedding_model()
-    query_embedding = model.encode(query).tolist() if model else []
+    query_embedding = await generate_single_embedding_for_rag(query)
     collection = chroma_client.get_or_create_collection("course_materials")
     
     # Build learning context hierarchy string
