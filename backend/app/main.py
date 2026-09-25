@@ -66,24 +66,23 @@ app = FastAPI(
 
 # Enable CORS — explicit allowed origins (no wildcard when credentials are enabled)
 import os
-default_origins = [
+origins = [
+    "https://virtual-tutor-app.vercel.app",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
-    "https://virtual-tutor-app.vercel.app",
     "https://virtual-tutor.vercel.app",
     "https://virtual-ai-tutor.vercel.app",
 ]
 env_origins = [o.strip() for o in os.getenv("CORS_ORIGINS", "").split(",") if o.strip()]
-allowed_origins = list(dict.fromkeys(default_origins + env_origins))
+allowed_origins = list(dict.fromkeys(origins + env_origins))
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
-    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
