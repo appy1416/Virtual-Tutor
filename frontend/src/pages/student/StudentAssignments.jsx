@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CheckSquare, Upload, Calendar, Clock, FileText, CheckCircle, AlertCircle, Award, X, Download } from 'lucide-react';
-import api from '../../services/api';
+import api, { API_BASE_URL } from '../../services/api';
 
 const StudentAssignments = () => {
   const [assignments, setAssignments] = useState([]);
@@ -149,7 +149,7 @@ const StudentAssignments = () => {
                     </div>
 
                     <a
-                      href={`http://localhost:8000/api/assignments/submissions/${a.submission.id}/download`}
+                      href={`${API_BASE_URL}/api/assignments/submissions/${a.submission.id}/download`}
                       download="my_submission.pdf"
                       className="text-xs font-bold text-[#FF5A36] hover:underline flex items-center gap-1"
                       title="Download Solution PDF"
@@ -184,7 +184,7 @@ const StudentAssignments = () => {
                 <div className="flex items-center gap-2">
                   {a.attachment_url && (
                     <a
-                      href={`http://localhost:8000/api/assignments/${a.id}/download-attachment`}
+                      href={`${API_BASE_URL}/api/assignments/${a.id}/download-attachment`}
                       download="assignment_instructions.pdf"
                       className="px-4 py-2 rounded-xl text-xs font-bold text-[#1E1B18] bg-[#FFF9F6] border border-[#E8D8CF] hover:bg-[#FFF0EB] transition-all flex items-center gap-1.5"
                     >

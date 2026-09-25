@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import api from '../../services/api';
+import api, { API_BASE_URL } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
 import { 
   FileText, Upload, Folder, Trash2, Plus, Sparkles, AlertCircle, CheckCircle, ExternalLink, HelpCircle, Download
@@ -325,7 +325,7 @@ const ReferenceMaterials = () => {
                                 {m.file_path && (
                                   <>
                                     <a
-                                      href={`http://localhost:8000/api/reference-materials/${m.id}/download`}
+                                      href={`${API_BASE_URL}/api/reference-materials/${m.id}/download`}
                                       download={`${(m.title || 'document').replace(/[^a-zA-Z0-9_-]/g, '_')}.pdf`}
                                       title="Download Genuine PDF Document"
                                       className="px-2.5 py-1.5 rounded-xl bg-white border border-[#E8D8CF] text-[#FF5A36] hover:bg-[#FFF0EB] transition-all flex items-center gap-1.5 text-xs font-bold"
@@ -333,7 +333,7 @@ const ReferenceMaterials = () => {
                                       <Download className="h-3.5 w-3.5" />
                                       <span>Download PDF</span>
                                     </a>
-                                    <a href={`http://localhost:8000/uploads/reference_materials/${m.file_path.split(/[\\/]/).pop()}`}
+                                    <a href={`${API_BASE_URL}/uploads/reference_materials/${m.file_path.split(/[\\/]/).pop()}`}
                                       target="_blank" rel="noopener noreferrer" title="Open in Browser"
                                       className="p-2 rounded-xl bg-white border border-[#E8D8CF] text-[#1E1B18] hover:bg-[#FFF0EB] transition-all">
                                       <ExternalLink className="h-3.5 w-3.5" />

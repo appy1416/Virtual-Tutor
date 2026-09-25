@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import React, { createContext, useState, useEffect, useContext, useCallback } from 'react';
 import api from '../services/api';
 
 const AuthContext = createContext(null);
@@ -25,10 +25,10 @@ export const AuthProvider = ({ children }) => {
     verifySession();
   }, []);
 
-  const login = async (email, password) => {
+  const login = useCallback(async (email, password) => {
     try {
       const res = await api.post('/api/auth/login', { email, password });
-      const { access_token, role, name } = res.data;
+      const { access_token } = res.data;
       localStorage.setItem('token', access_token);
       
       // Fetch full user details after token is stored
@@ -36,20 +36,20 @@ export const AuthProvider = ({ children }) => {
       setUser(profileRes.data);
       return profileRes.data;
     } catch (err) {
-      throw err.response?.data?.detail || "Login failed";
+      throw err.response?.data?.detail || (typeof err === 'string' ? err : "Login failed");
     }
-  };
+  }, []);
 
-  const register = async (name, email, password, role) => {
+  const register = useCallback(async (name, email, password, role) => {
     try {
       const res = await api.post('/api/auth/register', { name, email, password, role });
       return res.data;
     } catch (err) {
-      throw err.response?.data?.detail || "Registration failed";
+      throw err.response?.data?.detail || (typeof err === 'string' ? err : "Registration failed");
     }
-  };
+  }, []);
 
-  const loginWithGoogle = async (credential, accessToken = null) => {
+  const loginWithGoogle = useCallback(async (credential, accessToken = null) => {
     try {
       const res = await api.post('/api/auth/google', { 
         credential: credential || undefined, 
@@ -62,15 +62,16 @@ export const AuthProvider = ({ children }) => {
       setUser(profileRes.data);
       return profileRes.data;
     } catch (err) {
-      throw err.response?.data?.detail || "Google login failed";
+      const detail = err.response?.data?.detail;
+      throw detail || (typeof err === 'string' ? err : "Google authentication failed. Please try again.");
     }
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem('token');
     setUser(null);
     window.location.href = '/login';
-  };
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, loading, login, register, loginWithGoogle, logout }}>

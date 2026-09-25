@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Megaphone, Plus, Trash2, Calendar, CheckCircle2, AlertCircle, X, Image as ImageIcon, ExternalLink } from 'lucide-react';
-import api from '../../services/api';
+import api, { API_BASE_URL } from '../../services/api';
 
 const FacultyAnnouncements = () => {
   const [announcements, setAnnouncements] = useState([]);
@@ -172,12 +172,12 @@ const FacultyAnnouncements = () => {
               {a.image_url && (
                 <div className="mt-3 rounded-2xl overflow-hidden border border-[#E8D8CF] bg-[#FFF9F6] p-1 group relative max-w-xl">
                   <img 
-                    src={a.image_url.startsWith('http') ? a.image_url : `http://localhost:8000${a.image_url}`} 
+                    src={a.image_url.startsWith('http') ? a.image_url : `${API_BASE_URL}${a.image_url}`} 
                     alt={a.title} 
                     className="w-full max-h-80 object-contain rounded-xl"
                   />
                   <a
-                    href={a.image_url.startsWith('http') ? a.image_url : `http://localhost:8000${a.image_url}`}
+                    href={a.image_url.startsWith('http') ? a.image_url : `${API_BASE_URL}${a.image_url}`}
                     target="_blank"
                     rel="noreferrer"
                     className="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-black/60 hover:bg-black/80 text-white text-[10px] font-bold flex items-center gap-1 backdrop-blur-sm"

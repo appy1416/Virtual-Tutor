@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FileText, Upload, Plus, Trash2, BookOpen, CheckCircle2, AlertCircle, X, Download, ExternalLink } from 'lucide-react';
-import api from '../../services/api';
+import api, { API_BASE_URL } from '../../services/api';
 
 const FacultyMaterials = () => {
   const [materials, setMaterials] = useState([]);
@@ -162,7 +162,7 @@ const FacultyMaterials = () => {
                 {m.file_path && (
                   <>
                     <a
-                      href={`http://localhost:8000/api/reference-materials/${m.id}/download`}
+                      href={`${API_BASE_URL}/api/reference-materials/${m.id}/download`}
                       download={`${(m.title || 'document').replace(/[^a-zA-Z0-9_-]/g, '_')}.pdf`}
                       title="Download PDF File"
                       className="px-3 py-1.5 rounded-xl bg-[#FFF9F6] border border-[#E8D8CF] text-[#FF5A36] hover:bg-[#FFF0EB] transition-all flex items-center gap-1.5 text-xs font-bold"
@@ -171,7 +171,7 @@ const FacultyMaterials = () => {
                       <span>Download PDF</span>
                     </a>
                     <a
-                      href={`http://localhost:8000/uploads/reference_materials/${m.file_path.split(/[\\/]/).pop()}`}
+                      href={`${API_BASE_URL}/uploads/reference_materials/${m.file_path.split(/[\\/]/).pop()}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Open in Browser"

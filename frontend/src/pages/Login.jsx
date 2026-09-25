@@ -1,10 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { 
   GraduationCap, ShieldAlert, CheckCircle2, ArrowRight, 
   X, Sparkles, BookOpen
 } from 'lucide-react';
+
+// Track initialized client ID at module level to prevent duplicate initialize() across StrictMode & remounts
+let gisInitializedClientId = null;
+
+const initGoogleIdentityServices = (clientId, onCredentialCallback) => {
+  if (!window.google?.accounts?.id) return false;
+  if (gisInitializedClientId === clientId) return true; // Already initialized once
+
+  try {
+    window.google.accounts.id.initialize({
+      client_id: clientId,
+      auto_select: false,
+      cancel_on_tap_outside: true,
+      callback: onCredentialCallback,
+    });
+    gisInitializedClientId = clientId;
+    return true;
+  } catch (e) {
+    console.warn('Google Identity initialization error:', e);
+    return false;
+  }
+};
 
 const Login = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -22,7 +44,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   // Helper to route authenticated user by role
-  const handleAuthSuccess = (userData) => {
+  const handleAuthSuccess = useCallback((userData) => {
     if (userData?.role === 'faculty') {
       navigate('/faculty');
     } else if (userData?.role === 'admin') {
@@ -30,39 +52,32 @@ const Login = () => {
     } else {
       navigate('/student');
     }
+  }, [navigate]);
+
+  // Keep a stable ref to the latest auth callback to avoid re-initializing GIS on state changes
+  const credentialCallbackRef = useRef(null);
+  credentialCallbackRef.current = async (response) => {
+    if (response?.credential) {
+      setSubmitting(true);
+      setError('');
+      try {
+        const userData = await loginWithGoogle(response.credential);
+        handleAuthSuccess(userData);
+      } catch (err) {
+        setError(typeof err === 'string' ? err : 'Google authentication failed.');
+      } finally {
+        setSubmitting(false);
+      }
+    }
   };
 
-  // Initialize Google Identity Services if client ID is configured
+  // Initialize Google Identity Services once if client ID is configured
   useEffect(() => {
     const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-    if (!googleClientId || googleClientId === 'your_google_oauth_client_id_here') return;
+    if (!googleClientId || googleClientId === 'your_google_oauth_client_id_here' || googleClientId.trim() === '') return;
 
     const setupGIS = () => {
-      if (window.google?.accounts?.id) {
-        try {
-          window.google.accounts.id.initialize({
-            client_id: googleClientId,
-            auto_select: false,
-            cancel_on_tap_outside: true,
-            callback: async (response) => {
-              if (response.credential) {
-                setSubmitting(true);
-                setError('');
-                try {
-                  const userData = await loginWithGoogle(response.credential);
-                  handleAuthSuccess(userData);
-                } catch (err) {
-                  setError(typeof err === 'string' ? err : 'Google authentication failed.');
-                } finally {
-                  setSubmitting(false);
-                }
-              }
-            },
-          });
-        } catch (e) {
-          console.warn('Google Identity initialization error:', e);
-        }
-      }
+      initGoogleIdentityServices(googleClientId, (res) => credentialCallbackRef.current?.(res));
     };
 
     if (window.google?.accounts?.id) {
@@ -76,7 +91,7 @@ const Login = () => {
       }, 300);
       return () => clearInterval(timer);
     }
-  }, [loginWithGoogle, navigate]);
+  }, []);
 
   const handleGoogleSignIn = async () => {
     setError('');
@@ -93,29 +108,9 @@ const Login = () => {
       return;
     }
 
-    // Always ensure initialize has run with client_id
-    if (window.google.accounts?.id) {
-      try {
-        window.google.accounts.id.initialize({
-          client_id: googleClientId,
-          callback: async (response) => {
-            if (response.credential) {
-              setSubmitting(true);
-              setError('');
-              try {
-                const userData = await loginWithGoogle(response.credential);
-                handleAuthSuccess(userData);
-              } catch (err) {
-                setError(typeof err === 'string' ? err : 'Google authentication failed.');
-              } finally {
-                setSubmitting(false);
-              }
-            }
-          },
-        });
-      } catch (e) {
-        console.warn('Google accounts.id initialize error:', e);
-      }
+    // Ensure GIS is initialized with client_id if not done yet, without duplicate calls
+    if (gisInitializedClientId !== googleClientId && window.google.accounts?.id) {
+      initGoogleIdentityServices(googleClientId, (res) => credentialCallbackRef.current?.(res));
     }
 
     // Standard button click: launch OAuth2 token client popup directly
@@ -170,19 +165,13 @@ const Login = () => {
         setName('');
       } else {
         const userData = await login(email, password);
-        if (userData?.role === 'faculty') {
-          navigate('/faculty');
-        } else if (userData?.role === 'admin') {
-          navigate('/admin');
-        } else {
-          navigate('/student');
-        }
+        handleAuthSuccess(userData);
       }
     } catch (err) {
       if (typeof err === 'string') {
         setError(err);
       } else if (err?.message?.includes('Network Error') || err?.code === 'ERR_NETWORK') {
-        setError('Cannot connect to the server. Make sure the backend is running on port 8000.');
+        setError('Cannot connect to the server. Please check your network connection or verify that the backend is reachable.');
       } else {
         setError('An unexpected error occurred. Please try again.');
       }

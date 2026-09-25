@@ -41,8 +41,30 @@ All requested fixes and UI adjustments have been completed and verified.
      - Added backward-compatible routes for `POST /api/v1/auth/register`, `POST /api/v1/auth/login`, and `GET /api/v1/users/me` while keeping existing `/api/auth/*` routes 100% intact.
    - **Non-blocking MongoDB Initialization**: Added 2.5s timeouts and explicit connection failure logging with graceful fallback to `PersistentDatabase`.
 
+### Recent Changes (2026-09-25)
+1. **Production Backend API Base URL Configuration**:
+   - In `frontend/src/services/api.js`, updated `API_BASE_URL` to read `import.meta.env.VITE_API_URL` with fallback to `http://localhost:8000`.
+   - Exported `API_BASE_URL` from `api.js` and replaced all hardcoded `http://localhost:8000` URLs across `StudentAssignments.jsx`, `StudentAnnouncements.jsx`, `ReferenceMaterials.jsx`, `DoubtSolver.jsx`, `Messages.jsx`, `FacultySubmissions.jsx`, `FacultyMaterials.jsx`, and `FacultyAnnouncements.jsx`.
+   - In production (Vercel), `VITE_API_URL` is set to `https://virtual-tutor-msih.onrender.com`, resolving all API and Google OAuth requests directly to the production Render backend.
+
+2. **Google Identity Services Idempotent Initialization**:
+   - Resolved `[GSI_LOGGER]: google.accounts.id.initialize() is called multiple times` error.
+   - Refactored `frontend/src/pages/Login.jsx` so Google Identity Services (`google.accounts.id.initialize`) is initialized strictly once per application lifecycle via `initGoogleIdentityServices` guarded by module-level client ID tracking.
+   - Preserved dynamic React state by delegating credential responses to a stable callback reference (`credentialCallbackRef`).
+   - Removed duplicate `google.accounts.id.initialize` invocations inside `handleGoogleSignIn`.
+
+3. **Backend CORS Whitelist**:
+   - Added production frontend origin `https://virtual-tutor-app.vercel.app` to `default_origins` in `backend/app/main.py` while preserving existing Vercel staging and local development origins (`http://localhost:5173`, `http://localhost:3000`).
+
+4. **Environment Configuration & Security Hardening**:
+   - Updated root `.gitignore` and `frontend/.gitignore` to strictly exclude all `.env` and `.env.*` files while keeping `.env.example` templates.
+   - Updated `frontend/.env.example` and root `.env.example` with documented `VITE_API_URL` and `VITE_GOOGLE_CLIENT_ID`.
+   - Verified clean production build (`npm run build`) and lint checks (`oxlint`).
+
 ## Running the Application
 - **Backend (Development)**: `python run.py` inside `backend/` (running on http://localhost:8000 with reload).
 - **Backend (Render / Production)**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-- **Frontend**: `npm run dev` inside `frontend/` (running on http://localhost:5173).
+- **Frontend (Development)**: `npm run dev` inside `frontend/` (running on http://localhost:5173).
+- **Frontend (Production Build)**: `npm run build` inside `frontend/`.
+
 

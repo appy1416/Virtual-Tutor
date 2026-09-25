@@ -38,45 +38,5 @@
     "completed_at": null,
     "daily_study_time_seconds": 0,
     "_id": "6ab13cc25339626d24b66c66"
-  },
-  {
-    "student_id": "6aacd777bbf64d38a2ca3496",
-    "subjects": [
-      "Java Programming"
-    ],
-    "topics": [
-      "Java Fundamentals & Syntax"
-    ],
-    "exam_date": "2026-10-15",
-    "study_time": "08:30 PM",
-    "available_hours_per_day": 2.5,
-    "preferred_session_duration": 45,
-    "session_duration_minutes": 45,
-    "priority": "high",
-    "tasks": [
-      {
-        "task_id": "2b5a5c04-805f-4d55-a197-6f122cfb639f",
-        "subject": "Java Programming",
-        "topic": "Java Fundamentals & Syntax",
-        "description": "Revise weak area: Java Fundamentals & Syntax",
-        "duration_minutes": 45,
-        "completed": false,
-        "is_weak": true
-      },
-      {
-        "task_id": "d48d65e6-3519-413e-932f-22b60a5b5a6a",
-        "subject": "Java Programming",
-        "topic": "Java Fundamentals & Syntax",
-        "description": "Take a practice quiz on Java Fundamentals & Syntax subtopics",
-        "duration_minutes": 15,
-        "completed": false,
-        "is_weak": false
-      }
-    ],
-    "status": "active",
-    "created_at": "2026-09-21T14:27:56.532758+00:00",
-    "completed_at": null,
-    "daily_study_time_seconds": 0,
-    "_id": "6ab13eec8a3a8f6b24451a35"
   }
 ]

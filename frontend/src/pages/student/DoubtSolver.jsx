@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import api from '../../services/api';
+import api, { API_BASE_URL } from '../../services/api';
 import { 
   Send, Mic, Square, Paperclip, CheckCircle, FileText, MessageSquare, Volume2, Plus, Bot, User, Trash2
 } from 'lucide-react';
@@ -337,7 +337,7 @@ const DoubtSolver = () => {
                     <div className="mt-3 pt-3 flex items-center gap-2 text-xs font-bold border-t border-[#F3E8E2] text-[#FF5A36]">
                       <Volume2 className="h-4 w-4 animate-bounce" />
                       Tutor is speaking...
-                      <audio controls src={`http://localhost:8000${msg.audioUrl}`} className="h-6 w-40 ml-2" />
+                      <audio controls src={`${API_BASE_URL}${msg.audioUrl}`} className="h-6 w-40 ml-2" />
                     </div>
                   )}
 

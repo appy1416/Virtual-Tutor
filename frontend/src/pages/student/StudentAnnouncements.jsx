@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Megaphone, Calendar, BookOpen, Clock, AlertCircle, ExternalLink, Image as ImageIcon } from 'lucide-react';
-import api from '../../services/api';
+import api, { API_BASE_URL } from '../../services/api';
 
 const StudentAnnouncements = () => {
   const [announcements, setAnnouncements] = useState([]);
@@ -59,7 +59,7 @@ const StudentAnnouncements = () => {
               : 'Recent';
 
             const imageUrl = a.image_url
-              ? (a.image_url.startsWith('http') ? a.image_url : `http://localhost:8000${a.image_url}`)
+              ? (a.image_url.startsWith('http') ? a.image_url : `${API_BASE_URL}${a.image_url}`)
               : null;
 
             return (

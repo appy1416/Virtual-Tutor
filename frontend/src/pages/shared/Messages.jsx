@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageSquare, Send, Paperclip, User, Search, CheckCheck } from 'lucide-react';
-import api from '../../services/api';
+import api, { API_BASE_URL } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 
 const Messages = () => {
@@ -168,7 +168,7 @@ const Messages = () => {
                         <p className="whitespace-pre-wrap">{m.message_text}</p>
                         {m.attachment_url && (
                           <a
-                            href={`http://localhost:8000${m.attachment_url}`}
+                            href={`${API_BASE_URL}${m.attachment_url}`}
                             target="_blank"
                             rel="noreferrer"
                             className={`inline-block mt-2 px-3 py-1.5 rounded-xl text-[11px] font-bold underline ${

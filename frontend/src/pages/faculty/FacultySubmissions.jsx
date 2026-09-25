@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FolderCheck, Award, FileText, CheckCircle2, User, Send, BookOpen, CheckSquare, X } from 'lucide-react';
-import api from '../../services/api';
+import api, { API_BASE_URL } from '../../services/api';
 
 const FacultySubmissions = () => {
   const [activeTab, setActiveTab] = useState('assignments'); // 'assignments' | 'quizzes'
@@ -229,7 +229,7 @@ const FacultySubmissions = () => {
                           {s.file_url ? (
                             <div className="flex items-center gap-3">
                               <a
-                                href={`http://localhost:8000/api/assignments/submissions/${s.id}/download`}
+                                href={`${API_BASE_URL}/api/assignments/submissions/${s.id}/download`}
                                 download={`${s.student_name ? s.student_name.replace(/[^a-zA-Z0-9_-]/g, '_') : 'submission'}.pdf`}
                                 className="px-3 py-1.5 rounded-xl bg-[#FFF9F6] border border-[#E8D8CF] text-[#FF5A36] hover:bg-[#FFF0EB] transition-all flex items-center gap-1.5 text-xs font-bold"
                                 title="Download Genuine PDF Document"

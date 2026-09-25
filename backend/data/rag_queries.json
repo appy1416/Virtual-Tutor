@@ -103,5 +103,75 @@
     "timestamp": "2026-09-21T14:07:25.053666+00:00",
     "subject_id": "6aabaf9a352d88b6cff8ee96",
     "_id": "6ab13a1de3a4e4467fc73552"
+  },
+  {
+    "student_id": "6aacd777bbf64d38a2ca3496",
+    "query": "what is python?",
+    "response": "Your current doubt-solving context is Java Programming \u2192 Java Fundamentals & Syntax \u2192 JVM Architecture. Please ask a question related to this topic or change the selected subject/topic.",
+    "citations": [
+      {
+        "material_id": "6a7df28a8a8aca04254aae04",
+        "page_number": 1,
+        "snippet": "gvn"
+      },
+      {
+        "material_id": "6a7d4281a2463d282c4d5b3a",
+        "page_number": 1,
+        "snippet": "Deep learning is a subset of machine learning based on artificial neural networks."
+      },
+      {
+        "material_id": "6a7d434f808c93c18c99b70c",
+        "page_number": 1,
+        "snippet": "Deep learning is a subset of machine learning based on artificial neural networks."
+      },
+      {
+        "material_id": "6a7d43994992397367de2f5a",
+        "page_number": 1,
+        "snippet": "Deep learning is a subset of machine learning based on artificial neural networks."
+      },
+      {
+        "material_id": "6a7d441c090086c3b03b6546",
+        "page_number": 1,
+        "snippet": "Deep learning is a subset of machine learning based on artificial neural networks."
+      }
+    ],
+    "timestamp": "2026-09-22T15:53:21.091468+00:00",
+    "subject_id": "6aabaf9a352d88b6cff8ee96",
+    "_id": "6ab2a47105b3152c2c101c2d"
+  },
+  {
+    "student_id": "6aacd777bbf64d38a2ca3496",
+    "query": "what is java?",
+    "response": "**Java** is a high-level, class-based, object-oriented programming language designed to be platform-independent, secure, and robust. \n\nIt follows the core philosophy of **\"Write Once, Run Anywhere\" (WORA)**, meaning that Java code compiled on one platform can run on any other platform without modification, as long as a Java Virtual Machine (JVM) is installed on that system.\n\n---\n\n### Key Concepts & Components\n\nTo understand Java, it helps to know how its primary components interact:\n\n1. **Source Code (`.java`)**  \n   Developers write human-readable Java code in `.java` files.\n\n2. **Java Compiler (`javac`)**  \n   The Java compiler translates source code into intermediate, platform-neutral code called **Bytecode** (stored in `.class` files).\n\n3. **Java Virtual Machine (JVM)**  \n   The **JVM** is the execution engine of Java. It interprets or compiles (via the Just-In-Time compiler) the platform-independent bytecode into machine code specific to the host operating system. The JVM also handles:\n   * **Memory Management**: Allocates memory for objects (Heap) and execution threads (Stack).\n   * **Garbage Collection**: Automatically clears unused objects from memory to prevent memory leaks.\n\n4. **JRE (Java Runtime Environment)**  \n   Contains the JVM along with the core class libraries and files necessary to run Java applications.\n\n5. **JDK (Java Development Kit)**  \n   A complete software development environment containing the JRE, compiler (`javac`), debugger, and other development tools required to build Java applications.\n\n---\n\n### Main Features of Java\n* **Object-Oriented**: Based on real-world concepts like classes, objects, inheritance, encapsulation, abstraction, and polymorphism.\n* **Platform Independent**: Execution relies on the JVM rather than the underlying operating system.\n* **Automatic Memory Management**: Managed at runtime by the JVM's Garbage Collector.\n* **Multi-Threaded**: Built-in support for concurrent execution of multiple tasks.",
+    "citations": [
+      {
+        "material_id": "6a7df28a8a8aca04254aae04",
+        "page_number": 1,
+        "snippet": "gvn"
+      },
+      {
+        "material_id": "6a7d4281a2463d282c4d5b3a",
+        "page_number": 1,
+        "snippet": "Deep learning is a subset of machine learning based on artificial neural networks."
+      },
+      {
+        "material_id": "6a7d434f808c93c18c99b70c",
+        "page_number": 1,
+        "snippet": "Deep learning is a subset of machine learning based on artificial neural networks."
+      },
+      {
+        "material_id": "6a7d43994992397367de2f5a",
+        "page_number": 1,
+        "snippet": "Deep learning is a subset of machine learning based on artificial neural networks."
+      },
+      {
+        "material_id": "6a7d441c090086c3b03b6546",
+        "page_number": 1,
+        "snippet": "Deep learning is a subset of machine learning based on artificial neural networks."
+      }
+    ],
+    "timestamp": "2026-09-22T15:53:40.240659+00:00",
+    "subject_id": "6aabaf9a352d88b6cff8ee96",
+    "_id": "6ab2a48405b3152c2c101c2f"
   }
 ]
