@@ -61,10 +61,27 @@ All requested fixes and UI adjustments have been completed and verified.
    - Updated `frontend/.env.example` and root `.env.example` with documented `VITE_API_URL` and `VITE_GOOGLE_CLIENT_ID`.
    - Verified clean production build (`npm run build`) and lint checks (`oxlint`).
 
+### Recent Changes (2026-09-26)
+1. **Fix Deployed Logout 404 Bug & Vercel SPA Rewrites**:
+   - **Root Cause**: Logout was previously triggering a hard browser reload (`window.location.href = '/login'`). Because the repository is deployed on Vercel without a root `vercel.json` rewrite configuration, direct browser requests or hard reloads to `/login` resulted in Vercel returning `HTTP 404 Not Found` (`X-Vercel-Error: NOT_FOUND`).
+   - **Vercel Routing**:
+     - Added root `vercel.json` (`c:/Users/ASHWITH REDDY/OneDrive/Desktop/AI VIRTUAL TUTOR/vercel.json`) with SPA rewrite `{"source": "/(.*)", "destination": "/index.html"}` to ensure Vercel projects configured at root or monorepo root route all paths to `index.html`.
+     - Preserved `frontend/vercel.json` and added `frontend/public/vercel.json` so build output in `dist/` also retains SPA rewrite rules.
+   - **Client-Side React Router Integration**:
+     - In `frontend/src/App.jsx`, nested `<AuthProvider>` inside `<BrowserRouter>`, granting auth context direct access to React Router's `useNavigate`.
+     - In `frontend/src/context/AuthContext.jsx`, replaced hard window reload with `navigate('/login', { replace: true })`, eliminating unnecessary full-page document roundtrips and 404 risks.
+   - **Comprehensive Auth Cleanup**:
+     - Updated `logout` in `AuthContext.jsx` to clear `localStorage` (`token`, `user`, `role`), `sessionStorage.clear()`, delete Axios authorization header (`delete api.defaults.headers.common['Authorization']`), and clear context state (`setUser(null)`).
+     - Added safe call to backend logout endpoint (`try { await api.post('/api/auth/logout'); } catch (_) {}`) to notify the backend while ensuring frontend logout never blocks if the backend is unreachable.
+     - Added `auth:unauthorized` event listener in `AuthContext.jsx` for clean client-side router navigation upon 401 interceptor trigger.
+   - **Backend Logout Endpoints**:
+     - Added `POST /api/auth/logout` in `backend/app/routes/auth.py` and `POST /api/v1/auth/logout` in `backend/app/main.py` returning `{"message": "Logged out successfully"}` with HTTP 200.
+
 ## Running the Application
 - **Backend (Development)**: `python run.py` inside `backend/` (running on http://localhost:8000 with reload).
 - **Backend (Render / Production)**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 - **Frontend (Development)**: `npm run dev` inside `frontend/` (running on http://localhost:5173).
 - **Frontend (Production Build)**: `npm run build` inside `frontend/`.
+
 
 

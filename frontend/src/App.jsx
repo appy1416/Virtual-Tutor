@@ -87,8 +87,8 @@ const HomeRedirect = () => {
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
         <Routes>
           {/* Public routes */}
           <Route path="/login" element={<Login />} />
@@ -108,7 +108,6 @@ function App() {
           <Route path="/assignments" element={<ProtectedRoute allowedRoles={['student']}><StudentAssignments /></ProtectedRoute>} />
           <Route path="/student/assignments" element={<ProtectedRoute allowedRoles={['student']}><StudentAssignments /></ProtectedRoute>} />
           <Route path="/announcements" element={<ProtectedRoute allowedRoles={['student', 'faculty', 'admin']}><StudentAnnouncements /></ProtectedRoute>} />
-
 
           {/* Faculty routes */}
           <Route path="/faculty" element={<ProtectedRoute allowedRoles={['faculty', 'admin']}><FacultyDashboard /></ProtectedRoute>} />
@@ -140,8 +139,8 @@ function App() {
           <Route path="/" element={<HomeRedirect />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

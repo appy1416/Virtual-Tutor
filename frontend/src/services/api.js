@@ -33,9 +33,20 @@ api.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      // If we are not already on login, redirect
-      if (!window.location.pathname.includes('/login')) {
-        window.location.href = '/login';
+      localStorage.removeItem('role');
+      sessionStorage.clear();
+      delete api.defaults.headers.common['Authorization'];
+      // Dispatch custom event so AuthContext can cleanly navigate via React Router
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('auth:unauthorized'));
+        // Fallback redirection if pathname is not already /login and not handled
+        if (!window.location.pathname.includes('/login')) {
+          setTimeout(() => {
+            if (!window.location.pathname.includes('/login')) {
+              window.location.href = '/login';
+            }
+          }, 100);
+        }
       }
     }
     return Promise.reject(error);

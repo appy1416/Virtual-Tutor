@@ -211,3 +211,7 @@ async def google_auth(auth_req: GoogleAuthRequest):
 @router.get("/me", response_model=UserOut)
 async def get_me(current_user: Dict[str, Any] = Depends(get_current_user)):
     return current_user
+
+@router.post("/logout", status_code=status.HTTP_200_OK)
+async def logout():
+    return {"message": "Logged out successfully"}
