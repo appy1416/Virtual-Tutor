@@ -121,8 +121,12 @@ v1_router = APIRouter(prefix="/api/v1")
 v1_router.add_api_route("/auth/register", auth.register, methods=["POST"], response_model=UserOut, status_code=201, tags=["auth-v1"])
 v1_router.add_api_route("/auth/login", auth.login, methods=["POST"], response_model=Token, tags=["auth-v1"])
 v1_router.add_api_route("/auth/logout", auth.logout, methods=["POST"], tags=["auth-v1"])
+v1_router.add_api_route("/auth/provision-admin", auth.provision_admin, methods=["POST"], response_model=UserOut, status_code=201, tags=["auth-v1"])
 v1_router.add_api_route("/users/me", auth.get_me, methods=["GET"], response_model=UserOut, tags=["users-v1"])
 app.include_router(v1_router)
+
+# Direct admin provisioning route alias for application owner
+app.add_api_route("/api/admin/provision", auth.provision_admin, methods=["POST"], response_model=UserOut, status_code=201, tags=["admin"])
 
 @app.get("/health")
 async def health():

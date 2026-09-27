@@ -361,7 +361,6 @@ const Login = () => {
                   >
                     <option value="student">Student Account</option>
                     <option value="faculty">Faculty Account</option>
-                    <option value="admin">Administrator Account</option>
                   </select>
                 </>
               )}

@@ -79,14 +79,24 @@ async def create_user_admin(
     current_user: Dict[str, Any] = Depends(require_role(["admin"]))
 ):
     db = get_database()
-    existing = await db.users.find_one({"email": user_in.email})
+    clean_email = user_in.email.strip().lower()
+    existing = await db.users.find_one({"email": clean_email})
     if existing:
         raise HTTPException(status_code=400, detail="User with this email already exists")
+
+    # Enforce single Admin uniqueness at backend/database level
+    if user_in.role == "admin":
+        existing_admin = await db.users.find_one({"role": "admin"})
+        if existing_admin:
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail="An administrator account already exists. Multiple admin accounts are prohibited."
+            )
         
     hashed_pwd = hash_password(user_in.password)
     user_dict = {
-        "name": user_in.name,
-        "email": user_in.email,
+        "name": user_in.name.strip(),
+        "email": clean_email,
         "password_hash": hashed_pwd,
         "role": user_in.role,
         "active": True,
@@ -118,10 +128,26 @@ async def update_user_admin(
         
     updates = {}
     if user_in.name is not None:
-        updates["name"] = user_in.name
+        updates["name"] = user_in.name.strip()
     if user_in.email is not None:
-        updates["email"] = user_in.email
+        updates["email"] = user_in.email.strip().lower()
     if user_in.role is not None:
+        # Enforce single Admin uniqueness
+        if user_in.role == "admin" and u.get("role") != "admin":
+            existing_admin = await db.users.find_one({"role": "admin", "_id": {"$ne": ObjectId(user_id)}})
+            if existing_admin:
+                raise HTTPException(
+                    status_code=status.HTTP_409_CONFLICT,
+                    detail="An administrator account already exists. Multiple admin accounts are prohibited."
+                )
+        # Prevent demoting the only admin
+        if u.get("role") == "admin" and user_in.role != "admin":
+            admin_count = await db.users.count_documents({"role": "admin"})
+            if admin_count <= 1:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail="Cannot demote the only administrator account."
+                )
         updates["role"] = user_in.role
     if user_in.active is not None:
         updates["active"] = user_in.active
@@ -142,6 +168,19 @@ async def delete_user_admin(
     db = get_database()
     if not ObjectId.is_valid(user_id):
         raise HTTPException(status_code=400, detail="Invalid user ID format")
+        
+    u = await db.users.find_one({"_id": ObjectId(user_id)})
+    if not u:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    # Prevent deleting the only administrator account
+    if u.get("role") == "admin":
+        admin_count = await db.users.count_documents({"role": "admin"})
+        if admin_count <= 1:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Cannot delete the only administrator account."
+            )
         
     await db.users.delete_one({"_id": ObjectId(user_id)})
     return {"message": "User account permanently deleted"}

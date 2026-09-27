@@ -32,21 +32,19 @@ async def run_tests():
     assert login_res.status_code == 200
     student_token = login_res.json()["access_token"]
 
-    # 3. Register / Login Admin
+    # 3. Reject Public Admin Registration & Authenticate Admin
     admin_email = "inproc_admin@example.com"
-    client.post("/api/auth/register", json={
+    reg_admin = client.post("/api/auth/register", json={
         "name": "InProc Admin",
         "email": admin_email,
         "password": "Password123!",
         "role": "admin"
     })
-    login_admin = client.post("/api/auth/login", json={
-        "email": admin_email,
-        "password": "Password123!"
-    })
-    print("Admin Login Status:", login_admin.status_code)
-    assert login_admin.status_code == 200
-    admin_token = login_admin.json()["access_token"]
+    print("Public Admin Register Status (Must be 403):", reg_admin.status_code)
+    assert reg_admin.status_code == 403
+
+    from app.services.auth_service import create_access_token
+    admin_token = create_access_token({"sub": "xyz@gmail.com", "role": "admin", "name": "Admin"})
 
     # 4. Admin stats
     stats_res = client.get("/api/admin/stats", headers={"Authorization": f"Bearer {admin_token}"})

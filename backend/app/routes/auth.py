@@ -1,19 +1,36 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-from app.models.user import UserCreate, UserLogin, UserOut, Token, GoogleAuthRequest
+from fastapi import APIRouter, Depends, HTTPException, status, Header
+from app.models.user import (
+    UserCreate, UserLogin, UserOut, Token, GoogleAuthRequest, AdminProvisionRequest, Role
+)
 from app.services.auth_service import (
     hash_password_async, verify_password_async, create_access_token, serialize_doc, get_current_user
 )
 from app.db.mongodb import get_database
 from app.config import settings
 from datetime import datetime, timezone
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 import re
+import secrets
 import httpx
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
 @router.post("/register", response_model=UserOut, status_code=status.HTTP_201_CREATED)
 async def register(user_in: UserCreate):
+    # Strictly reject admin or unauthorized roles from public registration
+    requested_role = (user_in.role.value if hasattr(user_in.role, "value") else str(user_in.role)).lower().strip()
+    if requested_role == "admin" or user_in.role == Role.ADMIN:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Admin registration is forbidden through public registration. Public accounts can only be 'student' or 'faculty'."
+        )
+
+    if requested_role not in ["student", "faculty"]:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid account role. Allowed public registration roles are 'student' and 'faculty'."
+        )
+
     db = get_database()
     clean_email = user_in.email.strip().lower()
     
@@ -36,7 +53,7 @@ async def register(user_in: UserCreate):
         "name": user_in.name.strip(),
         "email": clean_email,
         "password_hash": hashed_pwd,
-        "role": user_in.role.value,
+        "role": requested_role,
         "created_at": datetime.now(timezone.utc),
         "profile": {
             "avatar": "",
@@ -52,6 +69,72 @@ async def register(user_in: UserCreate):
     user_dict["_id"] = result.inserted_id
     
     return serialize_doc(user_dict)
+
+@router.post("/provision-admin", response_model=UserOut, status_code=status.HTTP_201_CREATED)
+async def provision_admin(
+    admin_in: AdminProvisionRequest,
+    x_admin_provision_secret: Optional[str] = Header(None, alias="X-Admin-Provision-Secret")
+):
+    server_secret = (settings.ADMIN_PROVISION_SECRET or "").strip()
+    if not server_secret:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Admin provisioning is disabled on this server. ADMIN_PROVISION_SECRET is not configured."
+        )
+
+    provided_secret = (x_admin_provision_secret or admin_in.secret or "").strip()
+    if not provided_secret or not secrets.compare_digest(provided_secret, server_secret):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or missing admin provisioning secret."
+        )
+
+    db = get_database()
+
+    # Enforce single Admin account uniqueness at backend/database level
+    existing_admin = await db.users.find_one({"role": "admin"})
+    if existing_admin:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="An administrator account already exists. Multiple admin accounts are prohibited."
+        )
+
+    clean_email = admin_in.email.strip().lower()
+    existing_user = await db.users.find_one({
+        "$or": [
+            {"email": clean_email},
+            {"email": {"$regex": f"^{re.escape(clean_email)}$", "$options": "i"}}
+        ]
+    })
+
+    if existing_user:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="A user with this email address already exists"
+        )
+
+    hashed_pwd = await hash_password_async(admin_in.password)
+
+    admin_dict = {
+        "name": admin_in.name.strip(),
+        "email": clean_email,
+        "password_hash": hashed_pwd,
+        "role": "admin",
+        "created_at": datetime.now(timezone.utc),
+        "profile": {
+            "avatar": "",
+            "bio": "System Administrator",
+            "preferences": {
+                "language": "en",
+                "theme": "dark"
+            }
+        }
+    }
+
+    result = await db.users.insert_one(admin_dict)
+    admin_dict["_id"] = result.inserted_id
+
+    return serialize_doc(admin_dict)
 
 @router.post("/login", response_model=Token)
 async def login(credentials: UserLogin):

@@ -66,3 +66,16 @@ class TokenData(BaseModel):
 class GoogleAuthRequest(BaseModel):
     credential: Optional[str] = None
     access_token: Optional[str] = None
+
+class AdminProvisionRequest(BaseModel):
+    name: str
+    email: str
+    password: str
+    secret: Optional[str] = None
+
+    @field_validator("email", mode="before")
+    @classmethod
+    def sanitize_email(cls, v: str) -> str:
+        if isinstance(v, str):
+            return v.strip().lower()
+        return v

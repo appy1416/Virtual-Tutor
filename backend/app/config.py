@@ -25,6 +25,9 @@ class Settings(BaseSettings):
     GOOGLE_CLIENT_ID: str = os.getenv("GOOGLE_CLIENT_ID", "")
     GOOGLE_CLIENT_SECRET: str = os.getenv("GOOGLE_CLIENT_SECRET", "")
 
+    # Protected Admin Provisioning Secret (Never expose to frontend or git)
+    ADMIN_PROVISION_SECRET: str = os.getenv("ADMIN_PROVISION_SECRET", "")
+
     class Config:
         env_file = ".env"
         extra = "ignore"

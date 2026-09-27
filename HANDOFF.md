@@ -77,6 +77,22 @@ All requested fixes and UI adjustments have been completed and verified.
    - **Backend Logout Endpoints**:
      - Added `POST /api/auth/logout` in `backend/app/routes/auth.py` and `POST /api/v1/auth/logout` in `backend/app/main.py` returning `{"message": "Logged out successfully"}` with HTTP 200.
 
+### Recent Changes (2026-09-27)
+1. **Secure Admin Account Provisioning & Registration Hardening**:
+   - **Frontend UI Restriction**: Removed "Administrator Account" (`<option value="admin">`) from the public registration role dropdown in `frontend/src/pages/Login.jsx`. Public registration UI now permits exclusively "Student Account" (`student`) and "Faculty Account" (`faculty`).
+   - **Backend Authority Enforced**: In `backend/app/routes/auth.py`, `POST /api/auth/register` (and `/api/v1/auth/register`) strictly validates the requested role. Any attempt to register as `admin` (or any role other than `student`/`faculty`) is rejected with `HTTP 403 Forbidden` (`detail="Admin registration is forbidden through public registration..."`).
+   - **Single Admin Uniqueness & Protection**:
+     - Enforced single Administrator account uniqueness at the database level across user provisioning, creation, and role updates.
+     - In `backend/app/routes/admin.py`, updating (`PUT /api/admin/users/{user_id}`) or creating (`POST /api/admin/users`) an admin when an admin already exists returns `HTTP 409 Conflict`.
+     - Protected existing admin account against accidental demotion or deletion (`HTTP 400 Bad Request: Cannot demote/delete the only administrator account`).
+   - **Server-Side Protected Provisioning Mechanism**:
+     - Added `POST /api/auth/provision-admin` and alias `POST /api/admin/provision` requiring the `X-Admin-Provision-Secret` header or body `secret` matching `ADMIN_PROVISION_SECRET`. Uses constant-time comparison (`secrets.compare_digest`).
+     - Added CLI script `backend/scripts/provision_admin.py` for direct server-side terminal provisioning on Render Shell or local console.
+     - Documented `ADMIN_PROVISION_SECRET` in `.env.example` as a server-side only Render environment variable. Verified zero exposure in frontend codebase or git tracking.
+   - **Comprehensive Automated Verification**:
+     - Created `backend/test_admin_security.py` verifying all 11 required security test cases (public registration restrictions, 403 rejection on forged payloads, RBAC enforcement on Student/Faculty, existing Admin login and portal access, provisioning flow with secret and uniqueness checks, and frontend secret exclusion).
+     - Updated `backend/verify_all.py` smoke test suite to validate the hardened registration behavior.
+
 ## Running the Application
 - **Backend (Development)**: `python run.py` inside `backend/` (running on http://localhost:8000 with reload).
 - **Backend (Render / Production)**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`

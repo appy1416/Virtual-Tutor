@@ -218,5 +218,16 @@
     "read": true,
     "timestamp": "2026-09-22T15:56:13.120810+00:00",
     "_id": "6ab2a51d05b3152c2c101c32"
+  },
+  {
+    "sender_id": "6aae8f955a0035537148418f",
+    "sender_name": "ASH",
+    "sender_role": "faculty",
+    "receiver_id": "6aacd777bbf64d38a2ca3496",
+    "message_text": "dfghjkl",
+    "attachment_url": null,
+    "read": false,
+    "timestamp": "2026-09-27T16:36:41.698807+00:00",
+    "_id": "6ab946194a053efc5330f0b0"
   }
 ]
